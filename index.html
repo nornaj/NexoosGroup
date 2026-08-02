@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexoos Group — We grow B2B companies on autopilot</title>
+  <meta name="description"
+    content="Website, SEO, content, and paid search — run by one team, for a decade. 100+ B2B companies grown. ROI guaranteed or we work free.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      background: oklch(1 0 0);
+      color: oklch(0.196 0.021 279);
+      font-family: Manrope, Helvetica, Arial, sans-serif;
+    }
+
+    a {
+      color: oklch(0.196 0.021 279);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: oklch(0.665 0.184 36);
+    }
+
+    button {
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: oklch(0.68 0.012 280);
+    }
+
+    /* --- Mobile-first: hamburger visible, nav hidden by default --- */
+    [data-nx-menu] {
+      display: flex;
+    }
+
+    [data-nx-nav] {
+      display: none !important;
+    }
+
+    [data-nx-cta-desktop] {
+      display: none !important;
+    }
+
+    @media (min-width: 941px) {
+      [data-nx-nav] {
+        display: flex !important;
+      }
+
+      [data-nx-menu] {
+        display: none !important;
+      }
+
+      [data-nx-cta-desktop] {
+        display: inline-flex !important;
+      }
+    }
+
+    /* --- Mega menu --- */
+    .mega-trigger {
+      position: static;
+    }
+    .mega-trigger > a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+    .mega-trigger > a .mega-caret {
+      transition: transform 0.3s ease;
+    }
+    .mega-trigger.is-open > a .mega-caret {
+      transform: rotate(180deg);
+    }
+    .mega-panel {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      margin-top: 12px;
+      background: oklch(1 0 0);
+      border: 1px solid oklch(0.92 0.005 280);
+      border-radius: 14px;
+      box-shadow: 0 24px 64px -12px oklch(0.196 0.021 279 / 0.18);
+      padding: 36px clamp(28px, 3vw, 48px) 40px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 100;
+    }
+    .mega-trigger.is-open .mega-panel {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .mega-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0 32px;
+    }
+    .mega-col-head {
+      padding-bottom: 20px;
+      border-bottom: 1px solid oklch(0.92 0.005 280);
+      margin-bottom: 20px;
+    }
+    .mega-col-head h3 {
+      margin: 0 0 4px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: oklch(0.196 0.021 279);
+    }
+    .mega-col-head p {
+      margin: 0;
+      font-size: 12.5px;
+      color: oklch(0.52 0.015 280);
+      line-height: 1.4;
+    }
+    .mega-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 8px;
+      border-radius: 8px;
+      transition: background 0.25s ease;
+      text-decoration: none;
+    }
+    .mega-item:hover {
+      background: oklch(0.97 0.004 280);
+    }
+    .mega-item-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background: oklch(0.96 0.008 36);
+      color: oklch(0.665 0.184 36);
+      font-size: 16px;
+    }
+    .mega-item-text h4 {
+      margin: 0 0 2px;
+      font-size: 14px;
+      font-weight: 700;
+      color: oklch(0.196 0.021 279);
+      letter-spacing: -0.01em;
+    }
+    .mega-item-text p {
+      margin: 0;
+      font-size: 12.5px;
+      color: oklch(0.52 0.015 280);
+      line-height: 1.4;
+    }
+    @media (max-width: 940px) {
+      .mega-panel {
+        display: none !important;
+      }
+    }
+
+    /* --- Hamburger button --- */
+    .hamburger {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 60;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: oklch(0.196 0.021 279);
+      border-radius: 2px;
+      position: absolute;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+    }
+
+    .hamburger span:nth-child(1) {
+      transform: translateY(-6px);
+    }
+
+    .hamburger span:nth-child(2) {
+      transform: translateY(0);
+    }
+
+    .hamburger span:nth-child(3) {
+      transform: translateY(6px);
+    }
+
+    .hamburger.is-active span:nth-child(1) {
+      transform: rotate(45deg);
+    }
+
+    .hamburger.is-active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.is-active span:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+
+    /* --- Mobile drawer --- */
+    .mobile-drawer {
+      position: fixed;
+      inset: 0;
+      z-index: 55;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .mobile-drawer.is-open {
+      pointer-events: auto;
+      opacity: 1;
+    }
+    .mobile-drawer__backdrop {
+      position: absolute;
+      inset: 0;
+      background: oklch(0.196 0.021 279 / 0.5);
+      backdrop-filter: blur(4px);
+    }
+    .mobile-drawer__panel {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: oklch(1 0 0);
+      padding: 100px clamp(24px, 5vw, 40px) 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      transform: translateY(-12px);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+    }
+    .mobile-drawer.is-open .mobile-drawer__panel {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .mobile-drawer__close {
+      position: absolute;
+      top: clamp(20px, 2.4vw, 30px);
+      right: clamp(20px, 4vw, 44px);
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: 1px solid oklch(0.92 0.005 280);
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      color: oklch(0.4 0.015 280);
+      transition: background 0.3s, color 0.3s;
+      z-index: 1;
+    }
+    .mobile-drawer__close:hover {
+      background: oklch(0.96 0.004 280);
+      color: oklch(0.196 0.021 279);
+    }
+    .mobile-drawer__nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .mobile-drawer__nav a {
+      display: flex;
+      align-items: center;
+      padding: 16px 0;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: oklch(0.196 0.021 279);
+      border-bottom: 1px solid oklch(0.93 0.005 280);
+      transition: color 0.3s ease;
+    }
+    .mobile-drawer__nav a:last-child {
+      border-bottom: none;
+    }
+    .mobile-drawer__nav a:hover {
+      color: oklch(0.665 0.184 36);
+    }
+    .mobile-drawer__nav a.is-active {
+      color: oklch(0.665 0.184 36);
+    }
+    .mobile-drawer__cta {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 52px;
+      border-radius: 8px;
+      background: oklch(0.665 0.184 36);
+      color: oklch(0.99 0.003 280);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      transition: background 0.3s ease;
+    }
+    .mobile-drawer__cta:hover {
+      background: oklch(0.196 0.021 279);
+      color: oklch(0.99 0.003 280);
+    }
+    body.menu-open {
+      overflow: hidden;
+    }
+    @media (min-width: 941px) {
+      .mobile-drawer {
+        display: none !important;
+      }
+    }
+
+    /* --- FAQ smooth transition --- */
+    .faq-answer {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .faq-answer.is-open {
+      grid-template-rows: 1fr;
+    }
+    .faq-answer > div {
+      overflow: hidden;
+    }
+
+    /* --- CTA2 (contact section) --- */
+    @media (max-width: 860px) {
+      [data-nx-cta2] {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+
+      [data-nx-cta2-img] {
+        display: none !important;
+      }
+    }
+
+    /* --- Footer columns --- */
+    @media (max-width: 900px) {
+      [data-nx-foot] {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      [data-nx-foot] {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+
+      [data-nx-footbar]>span:last-child {
+        margin-left: 0 !important;
+      }
+    }
+
+    /* --- Blog grid --- */
+    @media (max-width: 780px) {
+      [data-nx-blog] {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+    }
+
+    /* --- Reviews --- */
+    @media (max-width: 980px) {
+      [data-nx-rev] {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+
+      [data-nx-rev]>div:first-child {
+        position: static !important;
+      }
+    }
+
+    @media (max-width: 620px) {
+      [data-nx-revgrid] {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+
+      [data-nx-revcol] {
+        margin-top: 0 !important;
+      }
+    }
+
+    /* --- CTA buttons --- */
+    @media (max-width: 560px) {
+      [data-nx-cta]>a {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+    }
+
+    /* --- Gaps (pain points) --- */
+    @media (max-width: 860px) {
+      [data-nx-gaps-head] {
+        grid-template-columns: minmax(0, 1fr) !important;
+        align-items: start !important;
+      }
+
+      [data-nx-gaps] {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+
+      [data-nx-gaps]>div:nth-child(-n + 2) {
+        border-top: 1px solid oklch(0.91 0.006 280) !important;
+      }
+    }
+
+    @media (max-width: 520px) {
+      [data-nx-gaps] {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+
+      [data-nx-gaps]>div {
+        border-top: 1px solid oklch(0.91 0.006 280) !important;
+      }
+    }
+
+    /* --- Guarantee --- */
+    @media (max-width: 720px) {
+      [data-nx-guar] {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+
+      [data-nx-guar-img] {
+        min-height: 240px !important;
+      }
+    }
+
+    /* --- Work / portfolio grid --- */
+    @media (max-width: 900px) {
+      [data-nx-work] {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+    }
+
+    @media (max-width: 600px) {
+      [data-nx-work] {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+    }
+
+    /* --- Before/After --- */
+    @media (max-width: 700px) {
+      [data-nx-ba] {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+    }
+
+    /* --- Process steps --- */
+    @media (max-width: 760px) {
+      [data-nx-step] {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+
+      [data-nx-step]>div {
+        order: 2 !important;
+      }
+
+      [data-nx-step-img] {
+        order: 1 !important;
+      }
+    }
+
+    /* --- Service slides --- */
+    @media (max-width: 780px) {
+      [data-nx-slide] {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+    }
+
+    /* --- Band (dark CTA in gaps section) --- */
+    @media (max-width: 780px) {
+      [data-nx-band] {
+        grid-template-columns: minmax(0, 1fr) !important;
+      }
+
+      [data-nx-band-img] {
+        order: -1;
+        min-height: 220px !important;
+      }
+    }
+
+    /* --- Hover helper: style-hover attributes handled via JS --- */
+
+    /* ═══════════════ SCROLL ANIMATIONS ═══════════════ */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    [data-reveal-left] {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-reveal-left].is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    [data-reveal-right] {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-reveal-right].is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      [data-reveal],
+      [data-reveal-left],
+      [data-reveal-right] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div style="position: relative; background: oklch(1 0 0); min-height: 100vh; overflow-x: clip">
+
+    <!-- ═══════════════ DECORATIVE GRID ═══════════════ -->
+    <div aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden; pointer-events: none">
+      <div
+        style="position: absolute; left: 9%; top: 0; bottom: 0; width: 1px; background-image: repeating-linear-gradient(to bottom, oklch(0.72 0.03 275 / 0.32) 0 4px, transparent 4px 10px)">
+      </div>
+      <div
+        style="position: absolute; left: 27%; top: 0; bottom: 0; width: 1px; background-image: repeating-linear-gradient(to bottom, oklch(0.72 0.03 275 / 0.32) 0 4px, transparent 4px 10px)">
+      </div>
+      <div
+        style="position: absolute; left: 73%; top: 0; bottom: 0; width: 1px; background-image: repeating-linear-gradient(to bottom, oklch(0.72 0.03 275 / 0.32) 0 4px, transparent 4px 10px)">
+      </div>
+      <div
+        style="position: absolute; left: 91%; top: 0; bottom: 0; width: 1px; background-image: repeating-linear-gradient(to bottom, oklch(0.72 0.03 275 / 0.32) 0 4px, transparent 4px 10px)">
+      </div>
+      <div
+        style="position: absolute; left: 0; right: 0; top: 14%; height: 1px; background-image: repeating-linear-gradient(to right, oklch(0.72 0.03 275 / 0.32) 0 4px, transparent 4px 10px)">
+      </div>
+      <div
+        style="position: absolute; left: 0; right: 0; top: 38%; height: 1px; background-image: repeating-linear-gradient(to right, oklch(0.72 0.03 275 / 0.32) 0 4px, transparent 4px 10px)">
+      </div>
+      <div
+        style="position: absolute; left: 0; right: 0; top: 62%; height: 1px; background-image: repeating-linear-gradient(to right, oklch(0.72 0.03 275 / 0.32) 0 4px, transparent 4px 10px)">
+      </div>
+      <div
+        style="position: absolute; left: 0; right: 0; top: 86%; height: 1px; background-image: repeating-linear-gradient(to right, oklch(0.72 0.03 275 / 0.32) 0 4px, transparent 4px 10px)">
+      </div>
+      <div
+        style="position: absolute; left: -9%; top: 6%; width: 340px; height: 340px; border-radius: 50%; border: 1px dashed oklch(0.72 0.03 275 / 0.42)">
+      </div>
+      <div
+        style="position: absolute; left: 17%; top: 8%; width: 172px; height: 172px; border-radius: 50%; border: 1px dashed oklch(0.72 0.03 275 / 0.42)">
+      </div>
+      <div
+        style="position: absolute; left: 62%; top: 30%; width: 250px; height: 250px; border-radius: 50%; border: 1px dashed oklch(0.72 0.03 275 / 0.42)">
+      </div>
+      <div
+        style="position: absolute; left: 4%; top: 52%; width: 190px; height: 190px; border-radius: 50%; border: 1px dashed oklch(0.72 0.03 275 / 0.42)">
+      </div>
+      <div
+        style="position: absolute; right: -6%; top: 68%; width: 300px; height: 300px; border-radius: 50%; border: 1px dashed oklch(0.72 0.03 275 / 0.42)">
+      </div>
+      <div
+        style="position: absolute; left: 22%; top: 88%; width: 160px; height: 160px; border-radius: 50%; border: 1px dashed oklch(0.72 0.03 275 / 0.42)">
+      </div>
+      <div
+        style="position: absolute; right: -34%; top: -4%; width: 168%; aspect-ratio: 1; border-radius: 50%; border: 1px solid oklch(0.665 0.184 36 / 0.26)">
+      </div>
+      <div
+        style="position: absolute; left: -62%; top: 40%; width: 150%; aspect-ratio: 1; border-radius: 50%; border: 1px solid oklch(0.665 0.184 36 / 0.18)">
+      </div>
+    </div>
+
+
+    <!-- ═══════════════ HEADER / NAV ═══════════════ -->
+    <div
+      style="position: sticky; top: 0; z-index: 50; isolation: isolate; padding: clamp(12px, 1.6vw, 20px) clamp(16px, 4vw, 40px); display: flex; justify-content: center">
+      <header
+        style="width: 100%; max-width: 1180px; background: oklch(1 0 0 / 0.86); backdrop-filter: blur(16px); border: 1px solid oklch(0.92 0.005 280); border-radius: 12px; box-shadow: 0 12px 34px -22px oklch(0.196 0.021 279 / 0.4); overflow: visible">
+        <div
+          style="padding: 12px clamp(14px, 1.6vw, 20px); display: flex; align-items: center; gap: clamp(16px, 2.4vw, 40px)">
+          <div style="flex: 1; display: flex; align-items: center">
+            <a href="#top" style="display: flex; align-items: center; flex-shrink: 0">
+              <img src="images/LOGO.svg" alt="Nexoos Group" style="display: block; height: 26px; width: auto">
+            </a>
+          </div>
+          <nav data-nx-nav
+            style="display: flex; align-items: center; gap: clamp(18px, 2.2vw, 34px); font-size: 15px; font-weight: 500; flex-shrink: 0">
+            <div class="mega-trigger">
+              <a href="services.html"
+                style="display: inline-flex; align-items: center; gap: 6px; color: oklch(0.3 0.015 280)">
+                Services
+                <span class="mega-caret" style="font-size: 20px; color: oklch(0.62 0.012 280); line-height: 0">▾</span>
+              </a>
+              <!-- Mega menu panel -->
+              <div class="mega-panel">
+                <div class="mega-grid">
+                  <!-- Web Design -->
+                  <div>
+                    <div class="mega-col-head">
+                      <h3>Design</h3>
+                      <p>Plan the look, UX and brand</p>
+                    </div>
+                    <a href="services.html" class="mega-item">
+                      <div class="mega-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                      </div>
+                      <div class="mega-item-text">
+                        <h4>Web Design</h4>
+                        <p>Websites, landing pages, and service pages</p>
+                      </div>
+                    </a>
+                    <a href="services.html" class="mega-item">
+                      <div class="mega-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+                      </div>
+                      <div class="mega-item-text">
+                        <h4>UX/UI & Product Design</h4>
+                        <p>Software, mobile apps, and dashboards</p>
+                      </div>
+                    </a>
+                    <a href="services.html" class="mega-item">
+                      <div class="mega-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+                      </div>
+                      <div class="mega-item-text">
+                        <h4>Branding & Visual Identity</h4>
+                        <p>Logos, brand systems, visual direction</p>
+                      </div>
+                    </a>
+                  </div>
+
+                  <!-- Web Development -->
+                  <div>
+                    <div class="mega-col-head">
+                      <h3>Development</h3>
+                      <p>Build websites, stores and platforms</p>
+                    </div>
+                    <a href="services.html" class="mega-item">
+                      <div class="mega-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                      </div>
+                      <div class="mega-item-text">
+                        <h4>CMS Development</h4>
+                        <p>WordPress, Webflow, Elementor, and more</p>
+                      </div>
+                    </a>
+                    <a href="services.html" class="mega-item">
+                      <div class="mega-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                      </div>
+                      <div class="mega-item-text">
+                        <h4>E-commerce Development</h4>
+                        <p>Shopify and WooCommerce stores</p>
+                      </div>
+                    </a>
+                    <a href="services.html" class="mega-item">
+                      <div class="mega-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+                      </div>
+                      <div class="mega-item-text">
+                        <h4>Full-stack & MVP</h4>
+                        <p>Dashboards, internal tools, MVP builds</p>
+                      </div>
+                    </a>
+                  </div>
+
+                  <!-- Marketing -->
+                  <div>
+                    <div class="mega-col-head">
+                      <h3>Marketing</h3>
+                      <p>Drive traffic and generate leads</p>
+                    </div>
+                    <a href="services.html" class="mega-item">
+                      <div class="mega-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                      </div>
+                      <div class="mega-item-text">
+                        <h4>Paid Ads</h4>
+                        <p>Google Ads, Meta, and paid search</p>
+                      </div>
+                    </a>
+                    <a href="services.html" class="mega-item">
+                      <div class="mega-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                      </div>
+                      <div class="mega-item-text">
+                        <h4>Email Marketing</h4>
+                        <p>Campaigns, automation, newsletters</p>
+                      </div>
+                    </a>
+                    <a href="services.html" class="mega-item">
+                      <div class="mega-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                      </div>
+                      <div class="mega-item-text">
+                        <h4>Social Media</h4>
+                        <p>Content strategy and management</p>
+                      </div>
+                    </a>
+                  </div>
+
+                  <!-- SEO -->
+                  <div>
+                    <div class="mega-col-head">
+                      <h3>SEO</h3>
+                      <p>Get found and rank higher</p>
+                    </div>
+                    <a href="services.html" class="mega-item">
+                      <div class="mega-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                      </div>
+                      <div class="mega-item-text">
+                        <h4>Technical SEO</h4>
+                        <p>Site speed, crawlability, indexing</p>
+                      </div>
+                    </a>
+                    <a href="services.html" class="mega-item">
+                      <div class="mega-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                      </div>
+                      <div class="mega-item-text">
+                        <h4>Content SEO</h4>
+                        <p>Keyword strategy, blog optimization</p>
+                      </div>
+                    </a>
+                    <a href="services.html" class="mega-item">
+                      <div class="mega-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      </div>
+                      <div class="mega-item-text">
+                        <h4>Local SEO</h4>
+                        <p>Google Business, maps, local rankings</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="#work" style="color: oklch(0.3 0.015 280)">Case studies</a>
+            <a href="blog.html" style="color: oklch(0.3 0.015 280)">Knowledge</a>
+            <a href="contact.html" style="color: oklch(0.3 0.015 280)">Contact</a>
+          </nav>
+          <div
+            style="display: flex; align-items: center; justify-content: flex-end; gap: 12px; flex-shrink: 0; flex: 1">
+            <a data-nx-cta-desktop href="contact.html" class="btn-hover-dark"
+              style="align-items: center; height: 46px; padding: 0 22px; border-radius: 8px; background: oklch(0.665 0.184 36); color: oklch(0.99 0.003 280); font-size: 15px; font-weight: 600; letter-spacing: -0.01em; transition: background 0.3s">Free
+              consultation</a>
+            <button data-nx-menu type="button" id="hamburger-btn" class="hamburger" aria-label="Open menu"
+              aria-expanded="false">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="mobile-drawer" id="mobile-drawer">
+      <div class="mobile-drawer__backdrop" id="drawer-backdrop"></div>
+      <div class="mobile-drawer__panel">
+        <button type="button" class="mobile-drawer__close" id="drawer-close-btn" aria-label="Close menu">✕</button>
+        <nav class="mobile-drawer__nav">
+          <a href="services.html" class="drawer-link">Services</a>
+          <a href="#work" class="drawer-link">Case studies</a>
+          <a href="blog.html" class="drawer-link">Knowledge</a>
+          <a href="contact.html" class="drawer-link">Contact</a>
+        </nav>
+        <a href="contact.html" class="mobile-drawer__cta drawer-link">
+          Free consultation
+          <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section id="top"
+      style="position: relative; z-index: 1; max-width: 1260px; margin: 0 auto; padding: clamp(48px, 7vw, 96px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 128px); display: flex; flex-direction: column; align-items: center; text-align: center; gap: clamp(26px, 3.4vw, 40px)">
+
+      <h1
+        style="margin: 0; max-width: 16ch; font-size: clamp(34px, 4.8vw, 66px); line-height: 1.06; letter-spacing: -0.04em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">
+        We grow B2B companies <span style="color: oklch(0.665 0.184 36)">on autopilot</span>
+      </h1>
+
+      <p
+        style="margin: 0; max-width: 44ch; font-size: clamp(16.5px, 1.35vw, 19.5px); line-height: 1.6; color: oklch(0.44 0.015 280); text-wrap: pretty">
+        Website, SEO, content, and paid search — run by one team, for a decade.
+      </p>
+
+      <div style="width: 100%; max-width: 780px; display: flex; flex-direction: column; gap: 12px; align-items: center">
+        <div
+          style="position: relative; width: 100%; aspect-ratio: 16 / 10; border-radius: 12px; overflow: hidden; border: 1px solid oklch(0.9 0.006 280); background: oklch(0.94 0.005 280); background-image: repeating-linear-gradient(135deg, oklch(0.9 0.008 280) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center; box-shadow: 0 34px 70px -40px oklch(0.196 0.021 279 / 0.5)">
+          <button type="button" class="btn-hover-dark"
+            style="display: inline-flex; align-items: center; justify-content: center; width: 84px; height: 60px; border: 0; border-radius: 12px; background: oklch(0.665 0.184 36); color: oklch(0.99 0.003 280); font-size: 20px; cursor: pointer; box-shadow: 0 14px 32px -14px oklch(0.196 0.021 279 / 0.6); transition: background 0.2s">▶</button>
+          <span
+            style="position: absolute; left: 14px; top: 14px; font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.5 0.015 280); background: oklch(1 0 0); padding: 6px 11px; border-radius: 4px; border: 1px solid oklch(0.9 0.006 280)">founder
+            video</span>
+        </div>
+        <p style="margin: 0; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: oklch(0.62 0.015 280)">
+          Drop in a 45–60s founder video here.</p>
+      </div>
+
+      <div data-nx-cta style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px">
+        <a href="#contact" class="btn-hover-orange-dark"
+          style="display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 30px; border-radius: 8px; background: oklch(0.665 0.184 36); color: oklch(0.99 0.003 280); font-size: 16.5px; font-weight: 600; letter-spacing: -0.01em; transition: background 0.2s">
+          Free consultation
+          <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+        </a>
+        <a href="#work" class="btn-hover-outline"
+          style="display: inline-flex; align-items: center; height: 56px; padding: 0 28px; border-radius: 8px; border: 1px solid oklch(0.87 0.008 280); background: oklch(1 0 0); color: oklch(0.26 0.015 280); font-size: 16.5px; font-weight: 600; letter-spacing: -0.01em; transition: border-color 0.2s, color 0.2s">See
+          our work</a>
+      </div>
+
+    </section>
+
+    <!-- ═══════════════ GAPS / PAIN POINTS ═══════════════ -->
+    <section id="gaps" style="position: relative; z-index: 1">
+      <div style="max-width: 1260px; margin: 0 auto; padding: clamp(64px, 9vw, 120px) clamp(16px, 4vw, 40px)">
+
+        <div data-nx-gaps-head
+          style="display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(24px, 5vw, 72px); align-items: end">
+          <div
+            style="display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 18px; max-width: 52ch">
+            <span
+              style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.9 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 13.5px; font-weight: 600; color: oklch(0.34 0.015 280)">
+              <span
+                style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+              Sound familiar?
+            </span>
+            <h2
+              style="margin: 0; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">
+              Where B2B pipelines quietly leak</h2>
+          </div>
+          <p
+            style="margin: 0; max-width: 42ch; font-size: 16px; line-height: 1.65; color: oklch(0.46 0.015 280); text-wrap: pretty">
+            Four failures cost B2B teams pipeline every week. <strong
+              style="font-weight: 700; color: oklch(0.196 0.021 279)">We've fixed all four, over a hundred
+              times.</strong></p>
+        </div>
+
+        <div data-nx-gaps
+          style="margin-top: clamp(48px, 6vw, 76px); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: clamp(20px, 3vw, 40px)">
+          <div data-reveal
+            style="border-top: 1px solid oklch(0.91 0.006 280); padding: 26px 0 8px; display: flex; flex-direction: column; gap: 12px; transition-delay: 0s">
+            <span
+              style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: oklch(0.665 0.184 36)">01</span>
+            <h3
+              style="margin: 0; font-size: 17.5px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; color: oklch(0.196 0.021 279)">
+              Traffic that never buys</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6; color: oklch(0.48 0.015 280); text-wrap: pretty">
+              Sessions climb. Demo requests don't.</p>
+          </div>
+          <div data-reveal
+            style="border-top: 1px solid oklch(0.91 0.006 280); padding: 26px 0 8px; display: flex; flex-direction: column; gap: 12px; transition-delay: 0.12s">
+            <span
+              style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: oklch(0.665 0.184 36)">02</span>
+            <h3
+              style="margin: 0; font-size: 17.5px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; color: oklch(0.196 0.021 279)">
+              A site that dodges the price</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6; color: oklch(0.48 0.015 280); text-wrap: pretty">
+              Buyers leave to find it elsewhere.</p>
+          </div>
+          <div data-reveal
+            style="border-top: 1px solid oklch(0.91 0.006 280); padding: 26px 0 8px; display: flex; flex-direction: column; gap: 12px; transition-delay: 0.24s">
+            <span
+              style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: oklch(0.665 0.184 36)">03</span>
+            <h3
+              style="margin: 0; font-size: 17.5px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; color: oklch(0.196 0.021 279)">
+              Four vendors, no owner</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6; color: oklch(0.48 0.015 280); text-wrap: pretty">
+              Everyone reports wins. Revenue is flat.</p>
+          </div>
+          <div data-reveal
+            style="border-top: 1px solid oklch(0.91 0.006 280); padding: 26px 0 8px; display: flex; flex-direction: column; gap: 12px; transition-delay: 0.36s">
+            <span
+              style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: oklch(0.665 0.184 36)">04</span>
+            <h3
+              style="margin: 0; font-size: 17.5px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; color: oklch(0.196 0.021 279)">
+              Spend you can't defend</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.6; color: oklch(0.48 0.015 280); text-wrap: pretty">No
+              one can trace a deal to a channel.</p>
+          </div>
+        </div>
+
+        <!-- Band / Dark CTA -->
+        <div data-nx-band
+          style="margin-top: clamp(48px, 6vw, 80px); display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); border-radius: 14px; overflow: hidden; background: oklch(0.196 0.021 279)">
+          <div
+            style="padding: clamp(32px, 4.4vw, 56px); display: flex; flex-direction: column; align-items: flex-start; gap: 20px">
+            <span
+              style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: oklch(0.68 0.03 280)">Ten
+              years of this</span>
+            <h3
+              style="margin: 0; font-size: clamp(23px, 2.6vw, 33px); line-height: 1.16; letter-spacing: -0.03em; font-weight: 800; text-wrap: balance; color: oklch(0.99 0.003 280)">
+              <span style="color: oklch(0.72 0.17 40)">100+</span> companies. The same four leaks, sealed.
+            </h3>
+            <p
+              style="margin: 0; max-width: 40ch; font-size: 15.5px; line-height: 1.62; color: oklch(0.75 0.015 280); text-wrap: pretty">
+              If we don't return your investment, we keep working free of charge.</p>
+            <a href="#work" class="btn-hover-band"
+              style="margin-top: 4px; display: inline-flex; align-items: center; gap: 10px; height: 50px; padding: 0 24px; border-radius: 8px; border: 1px solid oklch(0.4 0.02 280); color: oklch(0.99 0.003 280); font-size: 15.5px; font-weight: 600; transition: background 0.2s, border-color 0.2s">
+              See the results
+              <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+            </a>
+          </div>
+          <div data-nx-band-img
+            style="position: relative; min-height: 280px; background-color: oklch(0.28 0.02 280); background-image: repeating-linear-gradient(135deg, oklch(0.34 0.02 280) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center">
+            <span
+              style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.72 0.02 280); border: 1px solid oklch(0.4 0.02 280); border-radius: 4px; padding: 6px 11px">team
+              photo</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════ SERVICES CAROUSEL ═══════════════ -->
+    <section id="services" style="position: relative; z-index: 1">
+      <div style="max-width: 1260px; margin: 0 auto; padding: clamp(64px, 9vw, 120px) clamp(16px, 4vw, 40px)">
+
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
+          <span
+            style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.9 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 13.5px; font-weight: 600; color: oklch(0.34 0.015 280)">
+            <span
+              style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+            What we do
+          </span>
+          <h2
+            style="margin: 0; max-width: 22ch; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">
+            One team for the whole funnel</h2>
+        </div>
+
+        <div style="margin-top: clamp(36px, 4.6vw, 56px); overflow: hidden">
+          <div id="slides-viewport" style="position: relative; width: 100%">
+            <div id="slides-track" style="display: flex; transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)">
+              <!-- Slides rendered side-by-side by JS -->
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 28px; display: flex; align-items: center; gap: 20px">
+          <div id="dots-container" style="display: flex; align-items: center; gap: 8px">
+            <!-- Dots rendered by JS -->
+          </div>
+          <div style="margin-left: auto; display: flex; gap: 10px">
+            <button type="button" id="prev-btn" aria-label="Previous service" class="btn-hover-arrow"
+              style="width: 46px; height: 46px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid oklch(0.88 0.008 280); border-radius: 8px; background: oklch(1 0 0); color: oklch(0.28 0.015 280); font-size: 15px; cursor: pointer; transition: border-color 0.2s, background 0.2s, color 0.2s">←</button>
+            <button type="button" id="next-btn" aria-label="Next service" class="btn-hover-arrow"
+              style="width: 46px; height: 46px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid oklch(0.88 0.008 280); border-radius: 8px; background: oklch(1 0 0); color: oklch(0.28 0.015 280); font-size: 15px; cursor: pointer; transition: border-color 0.2s, background 0.2s, color 0.2s">→</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════ BEFORE & AFTER ═══════════════ -->
+    <section id="shift" style="position: relative; z-index: 1">
+      <div
+        style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
+          <span
+            style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.9 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 13.5px; font-weight: 600; color: oklch(0.34 0.015 280)">
+            <span
+              style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+            Before and after
+          </span>
+          <h2
+            style="margin: 0; max-width: 22ch; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">
+            What changes in six weeks</h2>
+        </div>
+
+        <div data-nx-ba
+          style="margin-top: clamp(40px, 5vw, 64px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 2.4vw, 28px)">
+
+          <div
+            style="padding: clamp(28px, 3.4vw, 40px); border: 1px solid oklch(0.91 0.006 280); border-radius: 14px; background: oklch(1 0 0); display: flex; flex-direction: column">
+            <span
+              style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.6 0.015 280)">Before</span>
+            <ul style="margin: 18px 0 0; padding: 0; list-style: none">
+              <li
+                style="display: flex; align-items: flex-start; gap: 12px; padding: 16px 0; font-size: 15.5px; line-height: 1.5; color: oklch(0.5 0.015 280)">
+                <span
+                  style="width: 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: oklch(0.78 0.01 280); flex-shrink: 0; display: block"></span>
+                <span>Traffic climbs, demos do not</span>
+              </li>
+              <li
+                style="display: flex; align-items: flex-start; gap: 12px; padding: 16px 0; font-size: 15.5px; line-height: 1.5; color: oklch(0.5 0.015 280)">
+                <span
+                  style="width: 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: oklch(0.78 0.01 280); flex-shrink: 0; display: block"></span>
+                <span>Four vendors, four dashboards</span>
+              </li>
+              <li
+                style="display: flex; align-items: flex-start; gap: 12px; padding: 16px 0; font-size: 15.5px; line-height: 1.5; color: oklch(0.5 0.015 280)">
+                <span
+                  style="width: 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: oklch(0.78 0.01 280); flex-shrink: 0; display: block"></span>
+                <span>Nobody can name the best channel</span>
+              </li>
+              <li
+                style="display: flex; align-items: flex-start; gap: 12px; padding: 16px 0; font-size: 15.5px; line-height: 1.5; color: oklch(0.5 0.015 280)">
+                <span
+                  style="width: 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: oklch(0.78 0.01 280); flex-shrink: 0; display: block"></span>
+                <span>Roadmap set by whoever shouts</span>
+              </li>
+            </ul>
+          </div>
+
+          <div
+            style="position: relative; overflow: hidden; padding: clamp(28px, 3.4vw, 40px); border-radius: 14px; background: oklch(0.196 0.021 279); display: flex; flex-direction: column">
+            <span
+              style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.72 0.17 40)">After</span>
+            <ul style="margin: 18px 0 0; padding: 0; list-style: none">
+              <li
+                style="display: flex; align-items: flex-start; gap: 12px; padding: 16px 0; font-size: 15.5px; line-height: 1.5; color: oklch(0.9 0.008 280)">
+                <span
+                  style="width: 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span>
+                <span>Pages built to book the demo</span>
+              </li>
+              <li
+                style="display: flex; align-items: flex-start; gap: 12px; padding: 16px 0; font-size: 15.5px; line-height: 1.5; color: oklch(0.9 0.008 280)">
+                <span
+                  style="width: 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span>
+                <span>One team, one dashboard</span>
+              </li>
+              <li
+                style="display: flex; align-items: flex-start; gap: 12px; padding: 16px 0; font-size: 15.5px; line-height: 1.5; color: oklch(0.9 0.008 280)">
+                <span
+                  style="width: 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span>
+                <span>Every deal traced to a channel</span>
+              </li>
+              <li
+                style="display: flex; align-items: flex-start; gap: 12px; padding: 16px 0; font-size: 15.5px; line-height: 1.5; color: oklch(0.9 0.008 280)">
+                <span
+                  style="width: 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span>
+                <span>Work ranked by what it returns</span>
+              </li>
+            </ul>
+            <div
+              style="margin-top: 24px; padding-top: 22px; border-top: 1px solid oklch(0.32 0.02 280); display: flex; align-items: baseline; gap: 12px">
+              <span
+                style="font-size: 34px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: oklch(0.72 0.17 40)">10×</span>
+              <span
+                style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.72 0.02 280)">Organic
+                traffic in 12 months — Louie H.</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════ PROCESS ═══════════════ -->
+    <section id="process" style="position: relative; z-index: 1">
+      <div
+        style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
+          <span
+            style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.9 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 13.5px; font-weight: 600; color: oklch(0.34 0.015 280)">
+            <span
+              style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+            How it works
+          </span>
+          <h2
+            style="margin: 0; max-width: 22ch; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">
+            Four steps, no guesswork</h2>
+        </div>
+
+        <div style="margin-top: clamp(16px, 2vw, 28px)">
+
+          <!-- Step 01 -->
+          <div data-nx-step
+            style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; padding: clamp(40px, 5vw, 64px) 0">
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 16px">
+              <span style="display: flex; flex-direction: column; gap: 8px; font-family: 'IBM Plex Mono', monospace">
+                <span
+                  style="display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 500; letter-spacing: 0.02em; line-height: 1; color: oklch(0.665 0.184 36)">
+                  <span style="width: 22px; height: 1px; background: oklch(0.665 0.184 36); display: block"></span>
+                  01
+                </span>
+                <span
+                  style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.56 0.015 280)">Week
+                  1</span>
+              </span>
+              <h3
+                style="margin: 0; font-size: clamp(24px, 2.6vw, 34px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.12; color: oklch(0.196 0.021 279)">
+                <span style="color: oklch(0.665 0.184 36)">We</span> audit
+              </h3>
+              <p
+                style="margin: 0; max-width: 34ch; font-size: 16px; line-height: 1.62; color: oklch(0.46 0.015 280); text-wrap: pretty">
+                Site, rankings, and spend on one page. Every leak ranked by what it costs you. You keep the document
+                either way.</p>
+            </div>
+            <div data-nx-step-img data-reveal-right
+              style="position: relative; aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; border: 1px solid oklch(0.91 0.006 280); background-color: oklch(0.95 0.004 280); background-image: repeating-linear-gradient(135deg, oklch(0.9 0.008 280) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center">
+              <span
+                style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.5 0.015 280); background: oklch(1 0 0); border: 1px solid oklch(0.9 0.006 280); border-radius: 4px; padding: 6px 11px">audit
+                dashboard — screenshot</span>
+              <span
+                style="position: absolute; left: 18px; bottom: 18px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 8px; background: oklch(1 0 0); box-shadow: 0 10px 26px -14px oklch(0.196 0.021 279 / 0.5); font-size: 13.5px; font-weight: 600; color: oklch(0.24 0.015 280)">
+                <span
+                  style="width: 6px; height: 6px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+                Free, no commitment
+              </span>
+            </div>
+          </div>
+
+          <!-- Step 02 -->
+          <div data-nx-step
+            style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; padding: clamp(40px, 5vw, 64px) 0">
+            <div style="order: 2; display: flex; flex-direction: column; align-items: flex-start; gap: 16px">
+              <span style="display: flex; flex-direction: column; gap: 8px; font-family: 'IBM Plex Mono', monospace">
+                <span
+                  style="display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 500; letter-spacing: 0.02em; line-height: 1; color: oklch(0.665 0.184 36)">
+                  <span style="width: 22px; height: 1px; background: oklch(0.665 0.184 36); display: block"></span>
+                  02
+                </span>
+                <span
+                  style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.56 0.015 280)">Weeks
+                  2–6</span>
+              </span>
+              <h3
+                style="margin: 0; font-size: clamp(24px, 2.6vw, 34px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.12; color: oklch(0.196 0.021 279)">
+                <span style="color: oklch(0.665 0.184 36)">We</span> build
+              </h3>
+              <p
+                style="margin: 0; max-width: 34ch; font-size: 16px; line-height: 1.62; color: oklch(0.46 0.015 280); text-wrap: pretty">
+                Biggest leak first, shipped in order of what it earns. Pages, tracking, and campaigns go live in stages,
+                not one big reveal.</p>
+            </div>
+            <div data-nx-step-img data-reveal-left
+              style="order: 1; position: relative; aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; border: 1px solid oklch(0.91 0.006 280); background-color: oklch(0.95 0.004 280); background-image: repeating-linear-gradient(135deg, oklch(0.9 0.008 280) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center">
+              <span
+                style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.5 0.015 280); background: oklch(1 0 0); border: 1px solid oklch(0.9 0.006 280); border-radius: 4px; padding: 6px 11px">build
+                in progress — photo</span>
+              <span
+                style="position: absolute; left: 18px; bottom: 18px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 8px; background: oklch(1 0 0); box-shadow: 0 10px 26px -14px oklch(0.196 0.021 279 / 0.5); font-size: 13.5px; font-weight: 600; color: oklch(0.24 0.015 280)">
+                <span
+                  style="width: 6px; height: 6px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+                Live in stages
+              </span>
+            </div>
+          </div>
+
+          <!-- Step 03 -->
+          <div data-nx-step
+            style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; padding: clamp(40px, 5vw, 64px) 0">
+            <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 16px">
+              <span style="display: flex; flex-direction: column; gap: 8px; font-family: 'IBM Plex Mono', monospace">
+                <span
+                  style="display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 500; letter-spacing: 0.02em; line-height: 1; color: oklch(0.665 0.184 36)">
+                  <span style="width: 22px; height: 1px; background: oklch(0.665 0.184 36); display: block"></span>
+                  03
+                </span>
+                <span
+                  style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.56 0.015 280)">Ongoing</span>
+              </span>
+              <h3
+                style="margin: 0; font-size: clamp(24px, 2.6vw, 34px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.12; color: oklch(0.196 0.021 279)">
+                <span style="color: oklch(0.665 0.184 36)">We</span> compound
+              </h3>
+              <p
+                style="margin: 0; max-width: 34ch; font-size: 16px; line-height: 1.62; color: oklch(0.46 0.015 280); text-wrap: pretty">
+                One report a month, tracing every deal back to its channel. We cut what is not working and put the
+                budget where it returns.</p>
+            </div>
+            <div data-nx-step-img data-reveal-right
+              style="position: relative; aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; border: 1px solid oklch(0.91 0.006 280); background-color: oklch(0.95 0.004 280); background-image: repeating-linear-gradient(135deg, oklch(0.9 0.008 280) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center">
+              <span
+                style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.5 0.015 280); background: oklch(1 0 0); border: 1px solid oklch(0.9 0.006 280); border-radius: 4px; padding: 6px 11px">monthly
+                report — screenshot</span>
+              <span
+                style="position: absolute; left: 18px; bottom: 18px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 8px; background: oklch(1 0 0); box-shadow: 0 10px 26px -14px oklch(0.196 0.021 279 / 0.5); font-size: 13.5px; font-weight: 600; color: oklch(0.24 0.015 280)">
+                <span
+                  style="width: 6px; height: 6px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+                Every deal traced
+              </span>
+            </div>
+          </div>
+
+          <!-- Step 04 -->
+          <div data-nx-step
+            style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: center; padding: clamp(40px, 5vw, 64px) 0">
+            <div style="order: 2; display: flex; flex-direction: column; align-items: flex-start; gap: 16px">
+              <span style="display: flex; flex-direction: column; gap: 8px; font-family: 'IBM Plex Mono', monospace">
+                <span
+                  style="display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 500; letter-spacing: 0.02em; line-height: 1; color: oklch(0.665 0.184 36)">
+                  <span style="width: 22px; height: 1px; background: oklch(0.665 0.184 36); display: block"></span>
+                  04
+                </span>
+                <span
+                  style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.56 0.015 280)">From
+                  here on</span>
+              </span>
+              <h3
+                style="margin: 0; font-size: clamp(24px, 2.6vw, 34px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.12; color: oklch(0.196 0.021 279)">
+                <span style="color: oklch(0.665 0.184 36)">You</span> enjoy
+              </h3>
+              <p
+                style="margin: 0; max-width: 34ch; font-size: 16px; line-height: 1.62; color: oklch(0.46 0.015 280); text-wrap: pretty">
+                Pipeline fills, the reporting explains itself, and marketing stops being your problem. You get back to
+                running the business.</p>
+            </div>
+            <div data-nx-step-img data-reveal-left
+              style="order: 1; position: relative; aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; border: 1px solid oklch(0.91 0.006 280); background-color: oklch(0.95 0.004 280); background-image: repeating-linear-gradient(135deg, oklch(0.9 0.008 280) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center">
+              <span
+                style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.5 0.015 280); background: oklch(1 0 0); border: 1px solid oklch(0.9 0.006 280); border-radius: 4px; padding: 6px 11px">client
+                at work — photo</span>
+              <span
+                style="position: absolute; left: 18px; bottom: 18px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 8px; background: oklch(1 0 0); box-shadow: 0 10px 26px -14px oklch(0.196 0.021 279 / 0.5); font-size: 13.5px; font-weight: 600; color: oklch(0.24 0.015 280)">
+                <span
+                  style="width: 6px; height: 6px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+                Off your plate
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Guarantee -->
+        <div data-nx-guar
+          style="position: relative; overflow: hidden; margin-top: clamp(28px, 4vw, 48px); border-radius: 16px; background: oklch(0.196 0.021 279); display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); align-items: end; gap: clamp(20px, 3vw, 48px)">
+          <div
+            style="padding: clamp(36px, 4.6vw, 60px); display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
+            <span
+              style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.18em; text-transform: uppercase; color: oklch(0.72 0.17 40)">The
+              guarantee</span>
+            <h3
+              style="margin: 0; max-width: 20ch; font-size: clamp(26px, 3vw, 38px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.12; text-wrap: balance; color: oklch(0.99 0.003 280)">
+              Return on your investment, or we work free</h3>
+            <p
+              style="margin: 0; max-width: 40ch; font-size: 16px; line-height: 1.62; color: oklch(0.75 0.015 280); text-wrap: pretty">
+              We agree the numbers before we start. Miss them and you stop paying — we don't.</p>
+            <a href="#contact" class="btn-hover-guar"
+              style="margin-top: 8px; display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 28px; border-radius: 8px; background: oklch(0.665 0.184 36); color: oklch(0.99 0.003 280); font-size: 16px; font-weight: 600; letter-spacing: -0.01em; transition: background 0.2s">
+              Free consultation
+              <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+            </a>
+          </div>
+          <div data-nx-guar-img
+            style="position: relative; align-self: end; min-height: 300px; display: flex; align-items: flex-end; justify-content: center">
+            <div
+              style="position: absolute; bottom: 12%; width: 74%; aspect-ratio: 1; border-radius: 50%; border: 12px solid oklch(0.665 0.184 36); max-width: 260px">
+            </div>
+            <div
+              style="position: relative; width: 78%; max-width: 280px; aspect-ratio: 3 / 4; border-radius: 12px 12px 0 0; background-color: oklch(0.26 0.02 280); background-image: repeating-linear-gradient(135deg, oklch(0.32 0.02 280) 0 1px, transparent 1px 9px); display: flex; align-items: center; justify-content: center">
+              <span
+                style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.74 0.02 280); border: 1px solid oklch(0.4 0.02 280); border-radius: 4px; padding: 6px 10px; text-align: center; line-height: 1.5">founder
+                cutout<br>transparent png</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════ RECENT WORK ═══════════════ -->
+    <section id="work" style="position: relative; z-index: 1">
+      <div
+        style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
+          <span
+            style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.9 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 13.5px; font-weight: 600; color: oklch(0.34 0.015 280)">
+            <span
+              style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+            Recent work
+          </span>
+          <h2
+            style="margin: 0; max-width: 22ch; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">
+            Six of the last hundred</h2>
+        </div>
+
+        <div data-nx-work
+          style="margin-top: clamp(40px, 5vw, 64px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 2.2vw, 26px)"
+          id="work-grid">
+          <!-- 6 project cards -->
+        </div>
+
+        <div style="margin-top: clamp(36px, 4vw, 52px); display: flex; justify-content: center">
+          <a href="#work" class="btn-hover-view-all"
+            style="display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 30px; border-radius: 8px; border: 1px solid oklch(0.87 0.008 280); background: oklch(1 0 0); color: oklch(0.24 0.015 280); font-size: 16px; font-weight: 600; letter-spacing: -0.01em; transition: border-color 0.2s, background 0.2s, color 0.2s">
+            View all case studies
+            <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════ REVIEWS ═══════════════ -->
+    <section id="reviews" style="position: relative; z-index: 1">
+      <div
+        style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+        <div data-nx-rev
+          style="display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 2fr); gap: clamp(32px, 5vw, 64px); align-items: start">
+
+          <div
+            style="position: sticky; top: 108px; display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
+            <span
+              style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.9 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 13.5px; font-weight: 600; color: oklch(0.34 0.015 280)">
+              <span
+                style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+              What our clients say
+            </span>
+            <h2
+              style="margin: 0; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">
+              Reviewed where it counts</h2>
+            <p
+              style="margin: 0; max-width: 30ch; font-size: 16px; line-height: 1.62; color: oklch(0.46 0.015 280); text-wrap: pretty">
+              Verified on Trustpilot and Upwork, and said out loud on camera.</p>
+            <a href="#contact" class="btn-hover-orange-dark"
+              style="margin-top: 8px; display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 28px; border-radius: 8px; background: oklch(0.665 0.184 36); color: oklch(0.99 0.003 280); font-size: 16px; font-weight: 600; letter-spacing: -0.01em; transition: background 0.2s">
+              Free consultation
+              <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+            </a>
+          </div>
+
+          <div data-nx-revgrid
+            style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start"
+            id="reviews-grid">
+            <!-- Reviews rendered by JS -->
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ FAQ ═══════════════ -->
+    <section id="faq" style="position: relative; z-index: 1">
+      <div
+        style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
+          <span
+            style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.9 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 13.5px; font-weight: 600; color: oklch(0.34 0.015 280)">
+            <span
+              style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+            Questions
+          </span>
+          <h2
+            style="margin: 0; max-width: 22ch; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">
+            Asked before every project</h2>
+        </div>
+
+        <div id="faq-container" style="margin-top: clamp(36px, 4.4vw, 56px)">
+          <!-- FAQ items rendered by JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════ KNOWLEDGE / BLOG ═══════════════ -->
+    <section id="knowledge" style="position: relative; z-index: 1">
+      <div
+        style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+
+        <div data-nx-blog-head
+          style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: end">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
+            <span
+              style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.9 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 13.5px; font-weight: 600; color: oklch(0.34 0.015 280)">
+              <span
+                style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+              Knowledge
+            </span>
+            <h2
+              style="margin: 0; max-width: 22ch; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">
+              What we have learned</h2>
+          </div>
+          <a href="#knowledge" class="btn-hover-view-all"
+            style="display: inline-flex; align-items: center; gap: 10px; height: 50px; padding: 0 24px; border-radius: 8px; border: 1px solid oklch(0.87 0.008 280); background: oklch(1 0 0); color: oklch(0.24 0.015 280); font-size: 15.5px; font-weight: 600; transition: border-color 0.2s, background 0.2s, color 0.2s">
+            All posts
+            <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+          </a>
+        </div>
+
+        <div data-nx-blog
+          style="margin-top: clamp(40px, 5vw, 64px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 2.4vw, 32px)"
+          id="blog-grid">
+          <!-- Blog posts rendered by JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════ CONTACT / CTA ═══════════════ -->
+    <section id="contact" style="position: relative; z-index: 1">
+      <div
+        style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+        <div data-nx-cta2
+          style="position: relative; overflow: hidden; border-radius: 16px; background: oklch(0.196 0.021 279); padding: clamp(32px, 4vw, 56px) clamp(28px, 4vw, 56px) 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: end">
+
+          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 22px; height: 100%">
+            <h2
+              style="margin: 0; max-width: 14ch; font-size: clamp(30px, 4vw, 52px); line-height: 1.06; letter-spacing: -0.04em; font-weight: 800; text-wrap: balance; color: oklch(0.99 0.003 280)">
+              Apply to work with us</h2>
+            <p
+              style="margin: 0; max-width: 40ch; font-size: 16.5px; line-height: 1.62; color: oklch(0.75 0.015 280); text-wrap: pretty">
+              We take a limited number of new clients each quarter. Send the form and we will tell you straight whether
+              you are a fit.</p>
+
+            <div data-nx-cta2-img
+              style="position: relative; margin-top: auto; width: 100%; max-width: 380px; display: flex; align-items: flex-end">
+              <div
+                style="width: 100%; aspect-ratio: 3 / 4; border-radius: 12px 12px 0 0; background-color: oklch(0.24 0.02 280); background-image: repeating-linear-gradient(135deg, oklch(0.3 0.02 280) 0 1px, transparent 1px 9px); display: flex; align-items: center; justify-content: center">
+                <span
+                  style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.74 0.02 280); border: 1px solid oklch(0.4 0.02 280); border-radius: 4px; padding: 6px 10px; text-align: center; line-height: 1.5">founder
+                  cutout<br>transparent png</span>
+              </div>
+              <div
+                style="position: absolute; left: -8px; bottom: 56px; padding: 16px 22px; border-radius: 10px; background: oklch(0.99 0.003 280); box-shadow: 0 18px 40px -20px oklch(0 0 0 / 0.6); display: flex; flex-direction: column; gap: 3px">
+                <span
+                  style="font-size: 16px; font-weight: 800; letter-spacing: -0.01em; color: oklch(0.665 0.184 36)">Founder
+                  name</span>
+                <span
+                  style="font-size: 13.5px; font-weight: 600; line-height: 1.4; color: oklch(0.24 0.015 280)">Founder,<br>Nexoos
+                  Group</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="margin-bottom: clamp(32px, 4vw, 56px); padding: clamp(28px, 3.4vw, 40px); border-radius: 14px; background: oklch(0.99 0.003 280); display: flex; flex-direction: column; gap: 22px">
+            <div data-nx-frow
+              style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px">
+              <label style="display: block">
+                <span style="display: block; font-size: 14px; font-weight: 700; color: oklch(0.196 0.021 279)">Your name
+                  <span style="color: oklch(0.665 0.184 36)">*</span></span>
+                <input type="text" placeholder="Jane Doe"
+                  style="width: 100%; margin-top: 8px; padding: 10px 0; border: 0; border-bottom: 1px solid oklch(0.88 0.008 280); background: transparent; font-family: inherit; font-size: 15.5px; color: oklch(0.196 0.021 279); outline: none">
+              </label>
+              <label style="display: block">
+                <span style="display: block; font-size: 14px; font-weight: 700; color: oklch(0.196 0.021 279)">Work
+                  email <span style="color: oklch(0.665 0.184 36)">*</span></span>
+                <input type="email" placeholder="jane@company.com"
+                  style="width: 100%; margin-top: 8px; padding: 10px 0; border: 0; border-bottom: 1px solid oklch(0.88 0.008 280); background: transparent; font-family: inherit; font-size: 15.5px; color: oklch(0.196 0.021 279); outline: none">
+              </label>
+            </div>
+            <label style="display: block">
+              <span style="display: block; font-size: 14px; font-weight: 700; color: oklch(0.196 0.021 279)">Company
+                website <span style="font-weight: 500; color: oklch(0.58 0.015 280)">(optional)</span></span>
+              <input type="text" placeholder="company.com"
+                style="width: 100%; margin-top: 8px; padding: 10px 0; border: 0; border-bottom: 1px solid oklch(0.88 0.008 280); background: transparent; font-family: inherit; font-size: 15.5px; color: oklch(0.196 0.021 279); outline: none">
+            </label>
+            <label style="display: block">
+              <span style="display: block; font-size: 14px; font-weight: 700; color: oklch(0.196 0.021 279)">What do you
+                need <span style="font-weight: 500; color: oklch(0.58 0.015 280)">(optional)</span></span>
+              <select
+                style="width: 100%; margin-top: 8px; padding: 10px 0; border: 0; border-bottom: 1px solid oklch(0.88 0.008 280); background: transparent; font-family: inherit; font-size: 15.5px; color: oklch(0.196 0.021 279); outline: none; appearance: none; cursor: pointer">
+                <option>Free consultation</option>
+                <option>Website</option>
+                <option>SEO</option>
+                <option>Content</option>
+                <option>Paid search</option>
+                <option>Full funnel</option>
+              </select>
+            </label>
+            <label style="display: block">
+              <span style="display: block; font-size: 14px; font-weight: 700; color: oklch(0.196 0.021 279)">Message
+                <span style="font-weight: 500; color: oklch(0.58 0.015 280)">(optional)</span></span>
+              <textarea rows="3" placeholder="What is not working right now"
+                style="width: 100%; margin-top: 8px; padding: 10px 0; border: 0; border-bottom: 1px solid oklch(0.88 0.008 280); background: transparent; font-family: inherit; font-size: 15.5px; color: oklch(0.196 0.021 279); outline: none; resize: vertical"></textarea>
+            </label>
+            <button type="button" class="btn-hover-dark"
+              style="margin-top: 4px; width: 100%; height: 56px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 0; border-radius: 8px; background: oklch(0.665 0.184 36); color: oklch(0.99 0.003 280); font-family: inherit; font-size: 16.5px; font-weight: 600; letter-spacing: -0.01em; cursor: pointer; transition: background 0.2s">
+              Send it
+              <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+            </button>
+            <span
+              style="text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.015 280)">Reply
+              within one business day</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer style="position: relative; z-index: 1; background: oklch(0.196 0.021 279)">
+      <div
+        style="max-width: 1260px; margin: 0 auto; padding: clamp(56px, 7vw, 96px) clamp(16px, 4vw, 40px) clamp(28px, 3vw, 40px)">
+
+        <div data-nx-foot
+          style="display: grid; grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr)); gap: clamp(32px, 4vw, 56px)">
+
+          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 20px">
+            <img src="images/LOGO.svg" alt="Nexoos Group"
+              style="display: block; height: 32px; width: auto; filter: brightness(0) invert(1)">
+            <p
+              style="margin: 0; max-width: 30ch; font-size: 15.5px; line-height: 1.6; color: oklch(0.72 0.015 280); text-wrap: pretty">
+              Website, SEO, content and paid search for B2B and SaaS companies. A decade in, 100+ projects shipped.</p>
+            <a href="#contact" class="btn-hover-guar"
+              style="display: inline-flex; align-items: center; gap: 10px; height: 50px; padding: 0 24px; border-radius: 8px; background: oklch(0.665 0.184 36); color: oklch(0.99 0.003 280); font-size: 15.5px; font-weight: 600; transition: background 0.2s">
+              Free consultation
+              <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+            </a>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <span
+              style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.62 0.02 280)">Services</span>
+            <nav style="display: flex; flex-direction: column; gap: 11px">
+              <a href="#services" style="font-size: 15px; color: oklch(0.86 0.01 280)">Websites</a>
+              <a href="#services" style="font-size: 15px; color: oklch(0.86 0.01 280)">SEO</a>
+              <a href="#services" style="font-size: 15px; color: oklch(0.86 0.01 280)">Content</a>
+              <a href="#services" style="font-size: 15px; color: oklch(0.86 0.01 280)">Paid search</a>
+              <a href="#services" style="font-size: 15px; color: oklch(0.86 0.01 280)">Conversion</a>
+              <a href="#services" style="font-size: 15px; color: oklch(0.86 0.01 280)">Reporting</a>
+            </nav>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <span
+              style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.62 0.02 280)">Company</span>
+            <nav style="display: flex; flex-direction: column; gap: 11px">
+              <a href="#work" style="font-size: 15px; color: oklch(0.86 0.01 280)">Case studies</a>
+              <a href="#process" style="font-size: 15px; color: oklch(0.86 0.01 280)">How it works</a>
+              <a href="#reviews" style="font-size: 15px; color: oklch(0.86 0.01 280)">Reviews</a>
+              <a href="#knowledge" style="font-size: 15px; color: oklch(0.86 0.01 280)">Knowledge</a>
+              <a href="#faq" style="font-size: 15px; color: oklch(0.86 0.01 280)">Questions</a>
+            </nav>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <span
+              style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.62 0.02 280)">Contact</span>
+            <div style="display: flex; flex-direction: column; gap: 11px">
+              <a href="#contact" style="font-size: 15px; color: oklch(0.86 0.01 280)">Contact us</a>
+              <a href="mailto:hello@nexoosgroup.com"
+                style="font-size: 15px; color: oklch(0.86 0.01 280)">hello@nexoosgroup.com</a>
+              <span style="font-size: 15px; line-height: 1.55; color: oklch(0.72 0.015 280)">Oslo, Norway</span>
+            </div>
+            <div style="margin-top: 6px; display: flex; gap: 10px">
+              <a href="#contact" aria-label="LinkedIn" class="btn-hover-social"
+                style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid oklch(0.34 0.02 280); border-radius: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: oklch(0.86 0.01 280); transition: border-color 0.2s, color 0.2s">in</a>
+              <a href="#contact" aria-label="Upwork" class="btn-hover-social"
+                style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid oklch(0.34 0.02 280); border-radius: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: oklch(0.86 0.01 280); transition: border-color 0.2s, color 0.2s">Up</a>
+              <a href="#reviews" aria-label="Trustpilot" class="btn-hover-social"
+                style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid oklch(0.34 0.02 280); border-radius: 8px; font-size: 13px; color: oklch(0.86 0.01 280); transition: border-color 0.2s, color 0.2s">★</a>
+            </div>
+          </div>
+
+        </div>
+
+        <div data-nx-footbar
+          style="margin-top: clamp(48px, 6vw, 80px); display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px">
+          <span
+            style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.08em; color: oklch(0.6 0.02 280)">©
+            2026 Nexoos Group</span>
+          <span
+            style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.08em; color: oklch(0.6 0.02 280)">ROI
+            or we work free</span>
+          <span style="margin-left: auto; display: flex; gap: 24px">
+            <a href="#privacy" style="font-size: 13.5px; color: oklch(0.72 0.015 280)">Privacy</a>
+            <a href="#terms" style="font-size: 13.5px; color: oklch(0.72 0.015 280)">Terms</a>
+          </span>
+        </div>
+
+      </div>
+    </footer>
+
+
+  </div>
+
+  <script>
+    /* ═══════════════════════════════════════════════════
+       NexoosGroup — Interactive Logic
+       Services carousel, FAQ accordion, hover states,
+       work grid, reviews grid, blog grid
+    ═══════════════════════════════════════════════════ */
+
+    /* ---------- SERVICES CAROUSEL ---------- */
+    const SLIDES = [
+      { num: '01', title: 'Websites', desc: 'Built to turn visits into demos.', badge: 'Shipped in 4 weeks', imgLabel: 'websites — photo', items: ['Positioning and page structure', 'Design and build', 'Live in 4–6 weeks'], link: 'Web design &amp; build' },
+      { num: '02', title: 'SEO', desc: 'Rank for what buyers search before they buy.', badge: '10× organic in 12 months', imgLabel: 'seo — photo', items: ['Technical and on-page fixes', 'Buyer-intent keyword map', 'Monthly reporting'], link: 'Organic growth' },
+      { num: '03', title: 'Content', desc: 'Pages that answer objections, not fluff.', badge: 'Written for buyers', imgLabel: 'content — photo', items: ['Comparison and use-case pages', 'Editorial calendar', 'Written by specialists'], link: 'Content strategy' },
+      { num: '04', title: 'Paid search', desc: 'Spend that maps to pipeline.', badge: 'Every dollar traced', imgLabel: 'paid search — photo', items: ['Google and LinkedIn', 'Conversion tracking setup', 'Weekly optimization'], link: 'Paid acquisition' },
+      { num: '05', title: 'Conversion', desc: 'Test what stands between traffic and revenue.', badge: 'Tested, not guessed', imgLabel: 'conversion — photo', items: ['Funnel teardown', 'A/B testing', 'Form and CTA rework'], link: 'CRO &amp; testing' },
+      { num: '06', title: 'Reporting', desc: 'One dashboard, every deal traced.', badge: 'No blind spend', imgLabel: 'reporting — photo', items: ['GA4 and CRM wiring', 'Channel attribution', 'One monthly review'], link: 'Analytics setup' },
+    ];
+
+    let currentSlide = 0;
+    let isAnimating = false;
+
+    function buildAllSlides() {
+      const track = document.getElementById('slides-track');
+      const bulletDot = `<span style="width: 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span>`;
+
+      track.innerHTML = SLIDES.map((s, i) => `
+    <div class="nx-slide" data-slide-index="${i}" style="min-width: 100%; width: 100%; flex-shrink: 0">
+      <div data-nx-slide style="width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); border: 1px solid oklch(0.91 0.006 280); border-radius: 14px; overflow: hidden; background: oklch(1 0 0)">
+        <div style="position: relative; min-height: 340px; background-color: oklch(0.95 0.004 280); background-image: repeating-linear-gradient(135deg, oklch(0.9 0.008 280) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.5 0.015 280); background: oklch(1 0 0); border: 1px solid oklch(0.9 0.006 280); border-radius: 4px; padding: 6px 11px">${s.imgLabel}</span>
+          <span style="position: absolute; left: 18px; bottom: 18px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 8px; background: oklch(1 0 0); box-shadow: 0 10px 26px -14px oklch(0.196 0.021 279 / 0.5); font-size: 13.5px; font-weight: 600; color: oklch(0.24 0.015 280)">
+            <span style="width: 6px; height: 6px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+            ${s.badge}
+          </span>
+        </div>
+        <div style="padding: clamp(28px, 3.6vw, 48px); display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 16px">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: oklch(0.665 0.184 36)">${s.num}</span>
+          <h3 style="margin: 0; font-size: clamp(22px, 2.2vw, 28px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; color: oklch(0.196 0.021 279)">${s.title}</h3>
+          <p style="margin: 0; max-width: 32ch; font-size: 16px; line-height: 1.6; color: oklch(0.46 0.015 280); text-wrap: pretty">${s.desc}</p>
+          <ul style="margin: 6px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px">
+            ${s.items.map(item => `<li style="display: flex; align-items: flex-start; gap: 10px; font-size: 15px; line-height: 1.5; color: oklch(0.32 0.015 280)">${bulletDot}<span>${item}</span></li>`).join('')}
+          </ul>
+          <a href="#contact" class="btn-hover-link" style="margin-top: auto; padding-top: 20px; display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: oklch(0.665 0.184 36); transition: color 0.2s">
+            ${s.link}
+            <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+          </a>
+        </div>
+      </div>
+    </div>`).join('');
+
+      // Equalize card heights
+      requestAnimationFrame(() => {
+        const innerCards = track.querySelectorAll('[data-nx-slide]');
+        let maxH = 0;
+        innerCards.forEach(card => {
+          const h = card.offsetHeight;
+          if (h > maxH) maxH = h;
+        });
+        innerCards.forEach(card => { card.style.height = maxH + 'px'; });
+      });
+
+      buildDots();
+    }
+
+    function buildDots() {
+      const container = document.getElementById('dots-container');
+      container.innerHTML = '';
+      for (let k = 0; k < SLIDES.length; k++) {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.ariaLabel = `Slide ${k + 1}`;
+        dot.className = 'carousel-dot';
+        dot.style.cssText = `width: ${k === 0 ? '28px' : '8px'}; height: 8px; padding: 0; border: 0; border-radius: 999px; background: ${k === 0 ? 'oklch(0.665 0.184 36)' : 'oklch(0.88 0.008 280)'}; cursor: pointer; transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease`;
+        dot.addEventListener('click', () => goToSlide(k));
+        container.appendChild(dot);
+      }
+    }
+
+    function updateDots() {
+      const dots = document.querySelectorAll('.carousel-dot');
+      dots.forEach((dot, k) => {
+        dot.style.width = k === currentSlide ? '28px' : '8px';
+        dot.style.background = k === currentSlide ? 'oklch(0.665 0.184 36)' : 'oklch(0.88 0.008 280)';
+      });
+    }
+
+    function goToSlide(n) {
+      if (isAnimating) return;
+      const next = ((n % SLIDES.length) + SLIDES.length) % SLIDES.length;
+      if (next === currentSlide) return;
+
+      isAnimating = true;
+      currentSlide = next;
+
+      const track = document.getElementById('slides-track');
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      updateDots();
+
+      setTimeout(() => { isAnimating = false; }, 580);
+    }
+
+    document.getElementById('prev-btn').addEventListener('click', () => goToSlide(currentSlide - 1));
+    document.getElementById('next-btn').addEventListener('click', () => goToSlide(currentSlide + 1));
+    buildAllSlides();
+
+    /* ---------- FAQ ACCORDION ---------- */
+    const FAQS = [
+      { q: 'What does this cost?', a: 'Retainers start where the work does. After the audit you get a fixed scope and a fixed monthly number — no hourly billing, no surprise line items.' },
+      { q: 'How fast do we see results?', a: 'Paid search moves in weeks. SEO and content compound over two to three quarters. We tell you which lever applies to you before you sign.' },
+      { q: 'What exactly does the guarantee cover?', a: 'We agree the target numbers before starting. If we miss them, we keep working at no charge until we hit them.' },
+      { q: 'Do we have to move off our current stack?', a: 'No. We work in what you already use — WordPress, Webflow, HubSpot, or your own build.' },
+      { q: 'Who actually does the work?', a: 'The same small team that runs your audit. No handoff to juniors, no outsourcing.' },
+      { q: 'Can we stop?', a: 'Month to month after the build. The site, accounts, and data are yours either way.' },
+    ];
+
+
+    function renderFAQ() {
+      const container = document.getElementById('faq-container');
+      container.innerHTML = FAQS.map((faq, k) => {
+        return `
+      <div style="border-top: 1px solid oklch(0.91 0.006 280)">
+        <button type="button" data-faq="${k}" style="width: 100%; padding: 26px 0; display: flex; align-items: center; gap: 24px; background: none; border: 0; text-align: left; cursor: pointer; font-family: inherit">
+          <span style="flex: 1; font-size: clamp(17px, 1.5vw, 19.5px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.35; color: oklch(0.196 0.021 279)">${faq.q}</span>
+          <span class="faq-icon" style="flex-shrink: 0; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid oklch(0.9 0.006 280); border-radius: 50%; font-size: 15px; line-height: 1; color: oklch(0.4 0.015 280); transition: color 0.3s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)">+</span>
+        </button>
+        <div class="faq-answer">
+          <div>
+            <p style="margin: 0; padding: 0 64px 28px 0; max-width: 62ch; font-size: 16px; line-height: 1.65; color: oklch(0.46 0.015 280); text-wrap: pretty">${faq.a}</p>
+          </div>
+        </div>
+      </div>`;
+      }).join('') + '<div style="border-top: 1px solid oklch(0.91 0.006 280)"></div>';
+
+      container.querySelectorAll('[data-faq]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const k = parseInt(btn.dataset.faq);
+          const wrapper = btn.closest('div');
+          const answer = wrapper.querySelector('.faq-answer');
+          const icon = btn.querySelector('.faq-icon');
+          const wasOpen = answer.classList.contains('is-open');
+          // Close all others
+          container.querySelectorAll('.faq-answer.is-open').forEach(a => {
+            a.classList.remove('is-open');
+            const otherIcon = a.closest('div').querySelector('.faq-icon');
+            if (otherIcon) { otherIcon.textContent = '+'; otherIcon.style.color = 'oklch(0.4 0.015 280)'; otherIcon.style.transform = ''; }
+          });
+          if (!wasOpen) {
+            answer.classList.add('is-open');
+            icon.textContent = '−';
+            icon.style.color = 'oklch(0.665 0.184 36)';
+            icon.style.transform = 'rotate(180deg)';
+          }
+        });
+      });
+    }
+    renderFAQ();
+
+    /* ---------- WORK / PORTFOLIO GRID ---------- */
+    const PROJECTS = [
+      { industry: 'SaaS', service: 'Website rebuild', result: '10× organic traffic in 12 months' },
+      { industry: 'B2B services', service: 'SEO and content', result: 'Placeholder result — add the real number' },
+      { industry: 'SaaS', service: 'Paid search', result: 'Placeholder result — add the real number' },
+      { industry: 'B2B services', service: 'Website and CRO', result: 'Placeholder result — add the real number' },
+      { industry: 'E-commerce', service: 'SEO', result: 'Placeholder result — add the real number' },
+      { industry: 'SaaS', service: 'Full funnel', result: 'Placeholder result — add the real number' },
+    ];
+
+    document.getElementById('work-grid').innerHTML = PROJECTS.map((p, i) => `
+  <a href="#work" data-reveal style="display: flex; flex-direction: column; border: 1px solid oklch(0.91 0.006 280); border-radius: 14px; overflow: hidden; background: oklch(1 0 0); color: oklch(0.196 0.021 279); transition: border-color 0.3s ease, opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); transition-delay: ${i * 0.1}s" onmouseenter="this.style.borderColor='oklch(0.665 0.184 36)'" onmouseleave="this.style.borderColor='oklch(0.91 0.006 280)'">
+    <div style="position: relative; aspect-ratio: 16 / 11; background-color: oklch(0.95 0.004 280); background-image: repeating-linear-gradient(135deg, oklch(0.9 0.008 280) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.5 0.015 280); background: oklch(1 0 0); border: 1px solid oklch(0.9 0.006 280); border-radius: 4px; padding: 6px 11px">project shot</span>
+    </div>
+    <div style="padding: 24px; display: flex; flex-direction: column; gap: 10px">
+      <span style="display: flex; flex-wrap: wrap; align-items: center; align-content: flex-start; gap: 4px 10px; min-height: 28px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.56 0.015 280)">
+        ${p.industry}
+        <span style="width: 3px; height: 3px; border-radius: 50%; background: oklch(0.78 0.01 280); display: inline-block; align-self: center"></span>
+        ${p.service}
+      </span>
+      <span style="font-size: 19px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.25">Client name</span>
+      <span style="font-size: 15px; line-height: 1.55; color: oklch(0.48 0.015 280); text-wrap: pretty">${p.result}</span>
+    </div>
+  </a>`).join('');
+
+    /* ---------- REVIEWS GRID ---------- */
+    const videoReviewCard = (title, role) => `
+  <div style="border: 1px solid oklch(0.91 0.006 280); border-radius: 14px; overflow: hidden; background: oklch(1 0 0)">
+    <div style="position: relative; aspect-ratio: 4 / 3; background-color: oklch(0.95 0.004 280); background-image: repeating-linear-gradient(135deg, oklch(0.9 0.008 280) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.5 0.015 280); background: oklch(1 0 0); border: 1px solid oklch(0.9 0.006 280); border-radius: 4px; padding: 5px 10px">video still</span>
+      <button type="button" aria-label="Play testimonial" class="btn-hover-dark" style="position: absolute; right: 16px; bottom: 16px; width: 48px; height: 48px; border: 0; border-radius: 50%; background: oklch(0.665 0.184 36); color: oklch(0.99 0.003 280); font-size: 15px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px -12px oklch(0.196 0.021 279 / 0.7); transition: background 0.2s">▶</button>
+    </div>
+    <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px">
+      <p style="margin: 0; font-size: 16px; font-weight: 600; line-height: 1.5; letter-spacing: -0.01em; color: oklch(0.196 0.021 279); text-wrap: pretty">"Placeholder quote — swap in the real line from the video."</p>
+      <span style="display: flex; flex-direction: column; gap: 3px">
+        <span style="font-size: 14.5px; font-weight: 700; color: oklch(0.196 0.021 279)">Client name</span>
+        <span style="font-size: 13.5px; color: oklch(0.52 0.015 280)">${role}</span>
+      </span>
+    </div>
+  </div>`;
+
+    const trustpilotCard = (headline, body, name, role) => `
+  <div style="border-radius: 14px; background: oklch(0.196 0.021 279); padding: 26px; display: flex; flex-direction: column; gap: 14px">
+    <span style="display: inline-flex; align-items: center; gap: 7px; font-size: 16px; font-weight: 700; letter-spacing: -0.02em; color: oklch(0.99 0.003 280)"><span style="color: oklch(0.72 0.16 165); font-size: 17px">★</span>Trustpilot</span>
+    <h3 style="margin: 0; font-size: 16.5px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.35; color: oklch(0.99 0.003 280)">${headline}</h3>
+    <p style="margin: 0; font-size: 15px; line-height: 1.6; color: oklch(0.78 0.015 280); text-wrap: pretty">${body}</p>
+    <span style="margin-top: 4px; display: flex; align-items: center; gap: 12px">
+      <span style="width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; background: oklch(0.3 0.02 280); color: oklch(0.75 0.02 280); display: inline-flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.06em; text-transform: uppercase">photo</span>
+      <span style="display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 14px; font-weight: 700; color: oklch(0.99 0.003 280)">${name}</span>
+        <span style="font-size: 13px; color: oklch(0.7 0.015 280)">${role}</span>
+      </span>
+    </span>
+  </div>`;
+
+    const upworkCard = (headline, body, name, role) => `
+  <div style="border-radius: 14px; background: oklch(0.196 0.021 279); padding: 26px; display: flex; flex-direction: column; gap: 14px">
+    <span style="display: inline-flex; align-items: center; gap: 7px; font-size: 16px; font-weight: 700; letter-spacing: -0.02em; color: oklch(0.99 0.003 280)"><span style="width: 9px; height: 9px; border-radius: 50%; background: oklch(0.72 0.16 155); display: block"></span>Upwork</span>
+    <h3 style="margin: 0; font-size: 16.5px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.35; color: oklch(0.99 0.003 280)">${headline}</h3>
+    <p style="margin: 0; font-size: 15px; line-height: 1.6; color: oklch(0.78 0.015 280); text-wrap: pretty">${body}</p>
+    <span style="margin-top: 4px; display: flex; align-items: center; gap: 12px">
+      <span style="width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; background: oklch(0.3 0.02 280); color: oklch(0.75 0.02 280); display: inline-flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.06em; text-transform: uppercase">photo</span>
+      <span style="display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 14px; font-weight: 700; color: oklch(0.99 0.003 280)">${name}</span>
+        <span style="font-size: 13px; color: oklch(0.7 0.015 280)">${role}</span>
+      </span>
+    </span>
+  </div>`;
+
+    document.getElementById('reviews-grid').innerHTML = `
+  <div style="display: flex; flex-direction: column; gap: 20px">
+    ${videoReviewCard('Client name', 'CEO | Company')}
+    ${trustpilotCard('Placeholder headline', 'Paste the real review here. Three or four lines reads best, and keeps the wall uneven.', 'Client name', 'CFO | Company')}
+    ${videoReviewCard('Client name', 'Co-founder | Company')}
+    ${upworkCard('Placeholder headline', 'Paste the real review here. Two lines is plenty.', 'Client name', 'Founder | Company')}
+    ${videoReviewCard('Client name', 'CTO | Company')}
+  </div>
+  <div data-nx-revcol style="display: flex; flex-direction: column; gap: 20px; margin-top: 56px">
+    ${trustpilotCard('Placeholder headline', 'Paste the real review here. Two lines is plenty.', 'Client name', 'COO | Company')}
+    ${videoReviewCard('Client name', 'Head of Marketing | Company')}
+    ${upworkCard('Placeholder headline', 'Paste the real review here. Three or four lines reads best, and keeps the wall uneven.', 'Client name', 'VP Growth | Company')}
+    ${videoReviewCard('Client name', 'Managing Director | Company')}
+    ${trustpilotCard('Placeholder headline', 'Paste the real review here. Three or four lines reads best, and keeps the wall uneven.', 'Client name', 'Marketing Lead | Company')}
+  </div>`;
+
+    /* ---------- BLOG GRID ---------- */
+    const POSTS = [
+      { cat: 'SEO', time: '8 min read', date: 'Jul 2026' },
+      { cat: 'Paid search', time: '6 min read', date: 'Jun 2026' },
+      { cat: 'Websites', time: '5 min read', date: 'May 2026' },
+    ];
+
+    document.getElementById('blog-grid').innerHTML = POSTS.map(p => `
+  <a href="#knowledge" style="display: flex; flex-direction: column; gap: 18px; color: oklch(0.196 0.021 279); transition: color 0.2s" onmouseenter="this.style.color='oklch(0.665 0.184 36)'" onmouseleave="this.style.color='oklch(0.196 0.021 279)'">
+    <div style="position: relative; aspect-ratio: 16 / 10; border-radius: 14px; overflow: hidden; border: 1px solid oklch(0.91 0.006 280); background-color: oklch(0.95 0.004 280); background-image: repeating-linear-gradient(135deg, oklch(0.9 0.008 280) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center">
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.5 0.015 280); background: oklch(1 0 0); border: 1px solid oklch(0.9 0.006 280); border-radius: 4px; padding: 6px 11px">post image</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <span style="display: flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.56 0.015 280)">
+        ${p.cat}
+        <span style="width: 3px; height: 3px; border-radius: 50%; background: oklch(0.78 0.01 280); display: inline-block; align-self: center"></span>
+        ${p.time}
+      </span>
+      <span style="font-size: 20px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.3; text-wrap: pretty">Placeholder post title goes here</span>
+      <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; color: oklch(0.6 0.015 280)">${p.date}</span>
+    </div>
+  </a>`).join('');
+
+
+    /* ---------- HOVER STATES ---------- */
+    // btn-hover-dark: orange -> dark on hover
+    document.querySelectorAll('.btn-hover-dark').forEach(el => {
+      el.addEventListener('mouseenter', () => { el.style.background = 'oklch(0.196 0.021 279)'; el.style.color = 'oklch(0.99 0.003 280)'; });
+      el.addEventListener('mouseleave', () => { el.style.background = 'oklch(0.665 0.184 36)'; el.style.color = 'oklch(0.99 0.003 280)'; });
+    });
+
+    // btn-hover-orange-dark
+    document.querySelectorAll('.btn-hover-orange-dark').forEach(el => {
+      el.addEventListener('mouseenter', () => { el.style.background = 'oklch(0.59 0.184 36)'; });
+      el.addEventListener('mouseleave', () => { el.style.background = 'oklch(0.665 0.184 36)'; });
+    });
+
+    // btn-hover-outline
+    document.querySelectorAll('.btn-hover-outline').forEach(el => {
+      el.addEventListener('mouseenter', () => { el.style.borderColor = 'oklch(0.196 0.021 279)'; el.style.color = 'oklch(0.196 0.021 279)'; });
+      el.addEventListener('mouseleave', () => { el.style.borderColor = 'oklch(0.87 0.008 280)'; el.style.color = 'oklch(0.26 0.015 280)'; });
+    });
+
+    // btn-hover-arrow
+    document.querySelectorAll('.btn-hover-arrow').forEach(el => {
+      el.addEventListener('mouseenter', () => { el.style.borderColor = 'oklch(0.196 0.021 279)'; el.style.background = 'oklch(0.196 0.021 279)'; el.style.color = 'oklch(0.99 0.003 280)'; });
+      el.addEventListener('mouseleave', () => { el.style.borderColor = 'oklch(0.88 0.008 280)'; el.style.background = 'oklch(1 0 0)'; el.style.color = 'oklch(0.28 0.015 280)'; });
+    });
+
+    // btn-hover-band
+    document.querySelectorAll('.btn-hover-band').forEach(el => {
+      el.addEventListener('mouseenter', () => { el.style.background = 'oklch(0.665 0.184 36)'; el.style.borderColor = 'oklch(0.665 0.184 36)'; });
+      el.addEventListener('mouseleave', () => { el.style.background = 'transparent'; el.style.borderColor = 'oklch(0.4 0.02 280)'; });
+    });
+
+    // btn-hover-view-all
+    document.querySelectorAll('.btn-hover-view-all').forEach(el => {
+      el.addEventListener('mouseenter', () => { el.style.borderColor = 'oklch(0.196 0.021 279)'; el.style.background = 'oklch(0.196 0.021 279)'; el.style.color = 'oklch(0.99 0.003 280)'; });
+      el.addEventListener('mouseleave', () => { el.style.borderColor = 'oklch(0.87 0.008 280)'; el.style.background = 'oklch(1 0 0)'; el.style.color = 'oklch(0.24 0.015 280)'; });
+    });
+
+    // btn-hover-guar
+    document.querySelectorAll('.btn-hover-guar').forEach(el => {
+      el.addEventListener('mouseenter', () => { el.style.background = 'oklch(0.99 0.003 280)'; el.style.color = 'oklch(0.196 0.021 279)'; });
+      el.addEventListener('mouseleave', () => { el.style.background = 'oklch(0.665 0.184 36)'; el.style.color = 'oklch(0.99 0.003 280)'; });
+    });
+
+    // btn-hover-social
+    document.querySelectorAll('.btn-hover-social').forEach(el => {
+      el.addEventListener('mouseenter', () => { el.style.borderColor = 'oklch(0.665 0.184 36)'; el.style.color = 'oklch(0.665 0.184 36)'; });
+      el.addEventListener('mouseleave', () => { el.style.borderColor = 'oklch(0.34 0.02 280)'; el.style.color = 'oklch(0.86 0.01 280)'; });
+    });
+
+    // btn-hover-link
+    document.querySelectorAll('.btn-hover-link').forEach(el => {
+      el.addEventListener('mouseenter', () => { el.style.color = 'oklch(0.196 0.021 279)'; });
+      el.addEventListener('mouseleave', () => { el.style.color = 'oklch(0.665 0.184 36)'; });
+    });
+
+    // Footer links hover
+    document.querySelectorAll('footer nav a, footer div a[href^="mailto"]').forEach(el => {
+      el.addEventListener('mouseenter', () => { el.style.color = 'oklch(0.665 0.184 36)'; });
+      el.addEventListener('mouseleave', () => { el.style.color = 'oklch(0.86 0.01 280)'; });
+    });
+
+    // Footer bottom links
+    document.querySelectorAll('[data-nx-footbar] a').forEach(el => {
+      el.addEventListener('mouseenter', () => { el.style.color = 'oklch(0.665 0.184 36)'; });
+      el.addEventListener('mouseleave', () => { el.style.color = 'oklch(0.72 0.015 280)'; });
+    });
+
+    /* ═══════════════ SCROLL REVEAL (Intersection Observer) ═══════════════ */
+    function initScrollReveal() {
+      const reveals = document.querySelectorAll('[data-reveal], [data-reveal-left], [data-reveal-right]');
+      if (!reveals.length) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+      reveals.forEach(el => observer.observe(el));
+    }
+
+    initScrollReveal();
+
+    /* ═══════════════ MOBILE HAMBURGER MENU ═══════════════ */
+    (function () {
+      const btn = document.getElementById('hamburger-btn');
+      const drawer = document.getElementById('mobile-drawer');
+      const backdrop = document.getElementById('drawer-backdrop');
+      const closeBtn = document.getElementById('drawer-close-btn');
+      if (!btn || !drawer) return;
+
+      function openMenu() {
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-expanded', 'true');
+        drawer.classList.add('is-open');
+        document.body.classList.add('menu-open');
+      }
+
+      function closeMenu() {
+        btn.classList.remove('is-active');
+        btn.setAttribute('aria-expanded', 'false');
+        drawer.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+      }
+
+      btn.addEventListener('click', () => {
+        drawer.classList.contains('is-open') ? closeMenu() : openMenu();
+      });
+
+      if (backdrop) backdrop.addEventListener('click', closeMenu);
+      if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+      drawer.querySelectorAll('.drawer-link').forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+    })();
+
+    /* ═══════════════ MEGA MENU HOVER ═══════════════ */
+    (function () {
+      const trigger = document.querySelector('.mega-trigger');
+      const panel = trigger ? trigger.querySelector('.mega-panel') : null;
+      const link = trigger ? trigger.querySelector('a') : null;
+      if (!trigger || !panel || !link) return;
+
+      let closeTimer = null;
+
+      function openMega() {
+        clearTimeout(closeTimer);
+        trigger.classList.add('is-open');
+      }
+
+      function scheduleMegaClose() {
+        closeTimer = setTimeout(() => {
+          trigger.classList.remove('is-open');
+        }, 250);
+      }
+
+      link.addEventListener('mouseenter', openMega);
+      link.addEventListener('mouseleave', scheduleMegaClose);
+      panel.addEventListener('mouseenter', openMega);
+      panel.addEventListener('mouseleave', scheduleMegaClose);
+    })();
+  </script>
+</body>
+
+</html
