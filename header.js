@@ -139,7 +139,7 @@
   /* ---------- Inject into placeholder ---------- */
   const placeholder = document.getElementById('nx-header');
   if (placeholder) {
-    placeholder.innerHTML = headerHTML;
+    placeholder.outerHTML = headerHTML;
   }
 
   /* ---------- Scroll hide/show ---------- */
