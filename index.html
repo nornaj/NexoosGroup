@@ -290,51 +290,6 @@
 
     /* --- Hover helper: style-hover attributes handled via JS --- */
 
-    /* ═══════════════ SCROLL ANIMATIONS ═══════════════ */
-    [data-reveal] {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    [data-reveal].is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    [data-reveal-left] {
-      opacity: 0;
-      transform: translateX(-60px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    [data-reveal-left].is-visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    [data-reveal-right] {
-      opacity: 0;
-      transform: translateX(60px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    [data-reveal-right].is-visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      [data-reveal],
-      [data-reveal-left],
-      [data-reveal-right] {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-      }
-    }
-
     /* --- Hero entrance animation --- */
     @keyframes heroFadeUp {
       from { opacity: 0; transform: translateY(32px); }
@@ -354,6 +309,64 @@
         opacity: 1 !important;
         transform: none !important;
         animation: none !important;
+      }
+    }
+
+    /* ═══════════════ SCROLL REVEAL ANIMATIONS ═══════════════ */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    [data-reveal="left"] {
+      transform: translateX(-40px) translateY(0);
+    }
+    [data-reveal="right"] {
+      transform: translateX(40px) translateY(0);
+    }
+    [data-reveal="scale"] {
+      transform: scale(0.94) translateY(0);
+    }
+    [data-reveal="fade"] {
+      transform: none;
+    }
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0) translateX(0) scale(1);
+    }
+
+    /* Stagger delays for children */
+    [data-reveal-delay="1"] { transition-delay: 0.08s; }
+    [data-reveal-delay="2"] { transition-delay: 0.16s; }
+    [data-reveal-delay="3"] { transition-delay: 0.24s; }
+    [data-reveal-delay="4"] { transition-delay: 0.32s; }
+    [data-reveal-delay="5"] { transition-delay: 0.40s; }
+    [data-reveal-delay="6"] { transition-delay: 0.48s; }
+
+    /* Separate left/right attributes (process steps) */
+    [data-reveal-left] {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    [data-reveal-right] {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    [data-reveal-left].is-visible,
+    [data-reveal-right].is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      [data-reveal],
+      [data-reveal-left],
+      [data-reveal-right] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
       }
     }
   </style>
@@ -462,7 +475,7 @@
     <section id="gaps" style="position: relative; z-index: 1">
       <div style="max-width: 1260px; margin: 0 auto; padding: clamp(64px, 9vw, 120px) clamp(16px, 4vw, 40px)">
 
-        <div data-nx-gaps-head
+        <div data-nx-gaps-head data-reveal
           style="display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(24px, 5vw, 72px); align-items: start">
           <div
             style="display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 18px; max-width: 52ch">
@@ -524,7 +537,7 @@
 
         <!-- Pain point cards -->
         <div data-nx-gaps
-          style="margin-top: clamp(36px, 4.6vw, 56px); display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(14px, 1.8vw, 24px)">
+data-reveal           style="margin-top: clamp(36px, 4.6vw, 56px); display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(14px, 1.8vw, 24px)">
           <article data-reveal style="position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 12px; padding: 26px 24px 30px; border: 1px solid oklch(0.91 0.006 280); border-radius: 14px; background: oklch(1 0 0); transition-delay: 0s">
             <span style="position: relative; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: oklch(0.665 0.184 36)">01</span>
             <h3 style="position: relative; margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.28; color: oklch(0.196 0.021 279)">Traffic that never buys</h3>
@@ -548,7 +561,7 @@
         </div>
 
         <!-- Band / Dark CTA -->
-        <div data-nx-band
+        <div data-nx-band data-reveal="scale"
           style="margin-top: clamp(48px, 6vw, 80px); display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); border-radius: 14px; overflow: hidden; background: oklch(0.196 0.021 279)">
           <div
             style="padding: clamp(32px, 4.4vw, 56px); display: flex; flex-direction: column; align-items: flex-start; gap: 20px">
@@ -568,7 +581,7 @@
               <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
             </a>
           </div>
-          <div data-nx-band-img
+          <div data-nx-band data-reveal="scale"-img
             style="position: relative; min-height: 280px; background-color: oklch(0.28 0.02 280); background-image: repeating-linear-gradient(135deg, oklch(0.34 0.02 280) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center">
             <span
               style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.72 0.02 280); border: 1px solid oklch(0.4 0.02 280); border-radius: 4px; padding: 6px 11px">team
@@ -580,7 +593,7 @@
     </section>
 
     <!-- ═══════════════ SERVICES CAROUSEL ═══════════════ -->
-    <section id="services" style="position: relative; z-index: 1">
+    <section id="services" data-reveal style="position: relative; z-index: 1">
       <div style="max-width: 1260px; margin: 0 auto; padding: clamp(64px, 9vw, 120px) clamp(16px, 4vw, 40px)">
 
         <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
@@ -619,10 +632,10 @@
     </section>
 
     <!-- ═══════════════ BEFORE & AFTER ═══════════════ -->
-    <section id="shift" style="position: relative; z-index: 1">
+    <section id="shift" data-reveal style="position: relative; z-index: 1">
       <div style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
 
-        <div data-nx-shift-head style="display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(24px, 5vw, 72px); align-items: start">
+        <div data-nx-shift-head data-reveal style="display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(24px, 5vw, 72px); align-items: start">
           <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px; max-width: 52ch">
             <span style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.9 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 13.5px; font-weight: 600; color: oklch(0.34 0.015 280)">
               <span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
@@ -642,7 +655,7 @@
           </div>
         </div>
 
-        <div data-nx-swap style="margin-top: clamp(36px, 4.6vw, 60px); display: grid; grid-template-columns: minmax(0, 1fr); overflow: hidden; border-radius: 14px">
+        <div data-nx-swap data-reveal style="margin-top: clamp(36px, 4.6vw, 60px); display: grid; grid-template-columns: minmax(0, 1fr); overflow: hidden; border-radius: 14px">
           <!-- Row 1 -->
           <div data-nx-swapl style="border-radius: 14px 14px 0 0; background: oklch(0.972 0.004 280); padding: 26px clamp(20px, 2.4vw, 34px); display: flex; align-items: center; gap: 14px; min-height: 84px">
             <span style="width: 6px; height: 6px; border-radius: 50%; background: oklch(0.78 0.01 280); flex-shrink: 0; display: block"></span>
@@ -712,7 +725,7 @@
     </section>
 
     <!-- ═══════════════ PROCESS ═══════════════ -->
-    <section id="process" style="position: relative; z-index: 1">
+    <section id="process" data-reveal style="position: relative; z-index: 1">
       <div
         style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
 
@@ -869,7 +882,7 @@
         </div>
 
         <!-- Guarantee -->
-        <div data-nx-guar
+        <div data-nx-guar data-reveal
           style="position: relative; overflow: hidden; margin-top: clamp(28px, 4vw, 48px); border-radius: 16px; background: oklch(0.196 0.021 279); display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); align-items: end; gap: clamp(20px, 3vw, 48px)">
           <div
             style="padding: clamp(36px, 4.6vw, 60px); display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
@@ -888,7 +901,7 @@
               <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
             </a>
           </div>
-          <div data-nx-guar-img
+          <div data-nx-guar data-reveal-img
             style="position: relative; align-self: end; min-height: 300px; display: flex; align-items: flex-end; justify-content: center">
             <div
               style="position: absolute; bottom: 18%; width: 60%; aspect-ratio: 1; border-radius: 50%; border: 12px solid oklch(0.665 0.184 36)">
@@ -902,7 +915,7 @@
     </section>
 
     <!-- ═══════════════ RECENT WORK ═══════════════ -->
-    <section id="work" style="position: relative; z-index: 1">
+    <section id="work" data-reveal style="position: relative; z-index: 1">
       <div
         style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
 
@@ -936,7 +949,7 @@
     </section>
 
     <!-- ═══════════════ REVIEWS ═══════════════ -->
-    <section id="reviews" style="position: relative; z-index: 1">
+    <section id="reviews" data-reveal style="position: relative; z-index: 1">
       <div
         style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
         <div data-nx-rev
@@ -974,7 +987,7 @@
     </section>
 
     <!-- ═══════════════ FAQ ═══════════════ -->
-    <section id="faq" style="position: relative; z-index: 1">
+    <section id="faq" data-reveal style="position: relative; z-index: 1">
       <div
         style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
 
@@ -998,7 +1011,7 @@
     </section>
 
     <!-- ═══════════════ KNOWLEDGE / BLOG ═══════════════ -->
-    <section id="knowledge" style="position: relative; z-index: 1">
+    <section id="knowledge" data-reveal style="position: relative; z-index: 1">
       <div
         style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
 
@@ -1032,7 +1045,7 @@
     </section>
 
     <!-- ═══════════════ CONTACT / CTA ═══════════════ -->
-    <section id="contact" style="position: relative; z-index: 1">
+    <section id="contact" data-reveal style="position: relative; z-index: 1">
       <div
         style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
         <div data-nx-cta2
