@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Development — Nexoos Group</title>
+<meta name="description" content="Build-only front-end work for B2B and SaaS teams. Send the Figma, get a fast, accessible site your marketers can edit without us.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="header.css">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body { margin: 0; background: oklch(1 0 0); color: oklch(0.196 0.021 279); font-family: Manrope, Helvetica, Arial, sans-serif; }
+a { color: oklch(0.196 0.021 279); text-decoration: none; transition: color 0.3s ease; }
+a:hover { color: oklch(0.665 0.184 36); }
+button { transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease; }
+input::placeholder, textarea::placeholder { color: oklch(0.68 0.012 280); }
+
+/* ═══════════════ MOBILE-FIRST RESPONSIVE DESIGN ═══════════════ */
+
+/* Hero */
+[data-nx-whero] { grid-template-columns: minmax(0, 1fr) !important; }
+@media (min-width: 900px) {
+  [data-nx-whero] { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr) !important; }
+}
+
+/* Stats */
+[data-nx-wstats] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+
+/* Problem cards */
+[data-nx-probs] { grid-template-columns: minmax(0, 1fr) !important; }
+@media (min-width: 640px) {
+  [data-nx-probs] { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+}
+
+/* What you get */
+[data-nx-get] { grid-template-columns: minmax(0, 1fr) !important; }
+@media (min-width: 900px) {
+  [data-nx-get] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+
+/* Performance table */
+[data-nx-perfhead] { display: none !important; }
+[data-nx-perfrow] { grid-template-columns: minmax(0, 1fr) auto auto auto !important; }
+@media (min-width: 760px) {
+  [data-nx-perfhead] { display: grid !important; }
+  [data-nx-perfrow] { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) 44px minmax(0, 1fr) !important; }
+}
+
+/* Build steps */
+[data-nx-steps4] { grid-template-columns: minmax(0, 1fr) !important; }
+@media (min-width: 600px) {
+  [data-nx-steps4] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (min-width: 900px) {
+  [data-nx-steps4] { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+}
+
+/* Reviews grid */
+[data-nx-rev] { grid-template-columns: minmax(0, 1fr) !important; }
+[data-nx-revgrid] { grid-template-columns: minmax(0, 1fr) !important; }
+[data-nx-revcol] { margin-top: 0 !important; }
+@media (min-width: 620px) {
+  [data-nx-revgrid] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  [data-nx-revcol] { margin-top: 56px !important; }
+}
+@media (min-width: 980px) {
+  [data-nx-rev] { grid-template-columns: minmax(0, 0.8fr) minmax(0, 2fr) !important; }
+}
+
+/* Recent case studies */
+[data-nx-wcase] { grid-template-columns: minmax(0, 1fr) !important; }
+@media (min-width: 600px) {
+  [data-nx-wcase] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (min-width: 900px) {
+  [data-nx-wcase] { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+}
+
+/* Scope & Pricing Tiers */
+[data-nx-tiers] { grid-template-columns: minmax(0, 1fr) !important; }
+@media (min-width: 600px) {
+  [data-nx-tiers] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (min-width: 900px) {
+  [data-nx-tiers] { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+}
+
+/* CTA Contact Section */
+[data-nx-cta2] { grid-template-columns: minmax(0, 1fr) !important; }
+@media (min-width: 900px) {
+  [data-nx-cta2] { grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr) !important; }
+}
+
+/* Footer */
+@media (max-width: 900px) { [data-nx-foot] { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+@media (max-width: 520px) {
+  [data-nx-foot] { grid-template-columns: minmax(0, 1fr) !important; }
+  [data-nx-footbar] > span:last-child { margin-left: 0 !important; }
+}
+
+/* FAQ accordion */
+summary::-webkit-details-marker { display: none; }
+summary { list-style: none; }
+details[open] > summary > span:last-child { color: oklch(0.665 0.184 36); }
+
+/* ═══════════════ HOVER UTILITIES ═══════════════ */
+.btn-hover-orange-dark { transition: background 0.3s ease, color 0.3s ease; }
+.btn-hover-orange-dark:hover { background: oklch(0.196 0.021 279) !important; color: oklch(0.99 0.003 280) !important; }
+
+.btn-hover-outline { transition: border-color 0.3s ease, color 0.3s ease; }
+.btn-hover-outline:hover { border-color: oklch(0.196 0.021 279) !important; color: oklch(0.196 0.021 279) !important; }
+
+.btn-hover-guar { transition: background 0.3s ease, color 0.3s ease; }
+.btn-hover-guar:hover { background: oklch(0.99 0.003 280) !important; color: oklch(0.196 0.021 279) !important; }
+
+.btn-hover-social { transition: border-color 0.3s ease, color 0.3s ease; }
+.btn-hover-social:hover { border-color: oklch(0.665 0.184 36) !important; color: oklch(0.665 0.184 36) !important; }
+
+.case-card-link { transition: opacity 0.3s ease; }
+.case-card-link:hover { opacity: 0.92; }
+
+/* ═══════════════ SCROLL ANIMATIONS ═══════════════ */
+[data-reveal] {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div style="position: relative; background: oklch(1 0 0); min-height: 100vh; overflow-x: clip">
+
+  <!-- ═══════════════ DECORATIVE GRID ═══════════════ -->
+  <div aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden; pointer-events: none">
+    <div style="position: absolute; left: 9%; top: 0; bottom: 0; width: 1px; background-image: repeating-linear-gradient(to bottom, oklch(0.72 0.03 275 / 0.32) 0 4px, transparent 4px 10px)"></div>
+    <div style="position: absolute; left: 27%; top: 0; bottom: 0; width: 1px; background-image: repeating-linear-gradient(to bottom, oklch(0.72 0.03 275 / 0.32) 0 4px, transparent 4px 10px)"></div>
+    <div style="position: absolute; left: 73%; top: 0; bottom: 0; width: 1px; background-image: repeating-linear-gradient(to bottom, oklch(0.72 0.03 275 / 0.32) 0 4px, transparent 4px 10px)"></div>
+    <div style="position: absolute; left: 91%; top: 0; bottom: 0; width: 1px; background-image: repeating-linear-gradient(to bottom, oklch(0.72 0.03 275 / 0.32) 0 4px, transparent 4px 10px)"></div>
+    <div style="position: absolute; left: 0; right: 0; top: 14%; height: 1px; background-image: repeating-linear-gradient(to right, oklch(0.72 0.03 275 / 0.32) 0 4px, transparent 4px 10px)"></div>
+    <div style="position: absolute; left: 0; right: 0; top: 38%; height: 1px; background-image: repeating-linear-gradient(to right, oklch(0.72 0.03 275 / 0.32) 0 4px, transparent 4px 10px)"></div>
+    <div style="position: absolute; left: 0; right: 0; top: 62%; height: 1px; background-image: repeating-linear-gradient(to right, oklch(0.72 0.03 275 / 0.32) 0 4px, transparent 4px 10px)"></div>
+    <div style="position: absolute; left: 0; right: 0; top: 86%; height: 1px; background-image: repeating-linear-gradient(to right, oklch(0.72 0.03 275 / 0.32) 0 4px, transparent 4px 10px)"></div>
+    <div style="position: absolute; left: -9%; top: 6%; width: 340px; height: 340px; border-radius: 50%; border: 1px dashed oklch(0.72 0.03 275 / 0.42)"></div>
+    <div style="position: absolute; left: 17%; top: 8%; width: 172px; height: 172px; border-radius: 50%; border: 1px dashed oklch(0.72 0.03 275 / 0.42)"></div>
+    <div style="position: absolute; left: 62%; top: 30%; width: 250px; height: 250px; border-radius: 50%; border: 1px dashed oklch(0.72 0.03 275 / 0.42)"></div>
+    <div style="position: absolute; left: 4%; top: 52%; width: 190px; height: 190px; border-radius: 50%; border: 1px dashed oklch(0.72 0.03 275 / 0.42)"></div>
+    <div style="position: absolute; right: -6%; top: 68%; width: 300px; height: 300px; border-radius: 50%; border: 1px dashed oklch(0.72 0.03 275 / 0.42)"></div>
+    <div style="position: absolute; left: 22%; top: 88%; width: 160px; height: 160px; border-radius: 50%; border: 1px dashed oklch(0.72 0.03 275 / 0.42)"></div>
+    <div style="position: absolute; right: -34%; top: -4%; width: 168%; aspect-ratio: 1; border-radius: 50%; border: 1px solid oklch(0.665 0.184 36 / 0.26)"></div>
+    <div style="position: absolute; left: -62%; top: 40%; width: 150%; aspect-ratio: 1; border-radius: 50%; border: 1px solid oklch(0.665 0.184 36 / 0.18)"></div>
+  </div>
+
+  <!-- HEADER (injected by header.js) -->
+  <div id="nx-header"></div>
+
+  <!-- ═══════════════ 1. HERO ═══════════════ -->
+  <section id="top" data-reveal style="position: relative; z-index: 1; min-height: calc(100vh - 110px); display: flex; align-items: center">
+    <div style="width: 100%; max-width: 1260px; margin: 0 auto; padding: clamp(48px, 7vw, 96px) clamp(16px, 4vw, 40px)">
+      <div data-nx-whero="" style="display: grid; gap: clamp(36px, 5vw, 80px); align-items: center">
+      <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 24px">
+        <span style="display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.52 0.015 280)">
+          <a href="services.html" style="color: oklch(0.52 0.015 280)">Services</a>
+          <span style="color: oklch(0.78 0.01 280)">/</span>
+          <span style="color: oklch(0.196 0.021 279)">Web development</span>
+        </span>
+        <h1 style="margin: 0; max-width: 17ch; font-size: clamp(38px, 5.2vw, 72px); line-height: 1.04; letter-spacing: -0.04em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">You have the designs. We <span style="color: oklch(0.665 0.184 36)">ship them</span></h1>
+        <p style="margin: 0; max-width: 46ch; font-size: clamp(16.5px, 1.3vw, 19px); line-height: 1.6; color: oklch(0.44 0.015 280); text-wrap: pretty">Build-only front-end work for B2B and SaaS teams. Send the Figma, get a fast, accessible site your marketers can edit without us.</p>
+        <div style="margin-top: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+          <a href="#contact" class="btn-hover-orange-dark" style="display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 28px; border-radius: 8px; background: oklch(0.665 0.184 36); color: oklch(0.99 0.003 280); font-size: 16.5px; font-weight: 600; letter-spacing: -0.01em">
+            Free consultation
+            <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+          </a>
+          <a href="web-design.html" class="btn-hover-outline" style="display: inline-flex; align-items: center; height: 56px; padding: 0 26px; border-radius: 8px; border: 1px solid oklch(0.87 0.008 280); background: oklch(1 0 0); color: oklch(0.26 0.015 280); font-size: 16.5px; font-weight: 600">Need design too</a>
+        </div>
+      </div>
+
+      <div data-nx-wstats="" style="display: grid; gap: clamp(14px, 1.6vw, 20px)">
+        <div style="display: flex; flex-direction: column; gap: 7px; padding: clamp(20px, 2.2vw, 28px); border: 1px solid oklch(0.91 0.006 280); border-radius: 14px; background: oklch(1 0 0)">
+          <span style="font-size: clamp(26px, 2.6vw, 34px); font-weight: 800; letter-spacing: -0.035em; line-height: 1; color: oklch(0.196 0.021 279)">100+</span>
+          <span style="font-size: 15px; font-weight: 700; letter-spacing: -0.015em; color: oklch(0.196 0.021 279)">Projects shipped</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 7px; padding: clamp(20px, 2.2vw, 28px); border: 1px solid oklch(0.91 0.006 280); border-radius: 14px; background: oklch(1 0 0)">
+          <span style="font-size: clamp(26px, 2.6vw, 34px); font-weight: 800; letter-spacing: -0.035em; line-height: 1; color: oklch(0.196 0.021 279)">10</span>
+          <span style="font-size: 15px; font-weight: 700; letter-spacing: -0.015em; color: oklch(0.196 0.021 279)">Years in B2B</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 7px; padding: clamp(20px, 2.2vw, 28px); border: 1px solid oklch(0.91 0.006 280); border-radius: 14px; background: oklch(1 0 0)">
+          <span style="font-size: clamp(26px, 2.6vw, 34px); font-weight: 800; letter-spacing: -0.035em; line-height: 1; color: oklch(0.196 0.021 279)">2–4</span>
+          <span style="font-size: 15px; font-weight: 700; letter-spacing: -0.015em; color: oklch(0.196 0.021 279)">Weeks to ship</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 7px; padding: clamp(20px, 2.2vw, 28px); border: 1px solid oklch(0.196 0.021 279); border-radius: 14px; background: oklch(0.196 0.021 279)">
+          <span style="font-size: clamp(26px, 2.6vw, 34px); font-weight: 800; letter-spacing: -0.035em; line-height: 1; color: oklch(0.72 0.17 40)">ROI</span>
+          <span style="font-size: 15px; font-weight: 700; letter-spacing: -0.015em; color: oklch(0.99 0.003 280)">Or we work free</span>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 2. WHY BUILDS FAIL ═══════════════ -->
+  <section id="problem" data-reveal style="position: relative; z-index: 1">
+    <div style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+      <div data-nx-gaps-head="" style="display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(24px, 5vw, 72px); align-items: end">
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px; max-width: 52ch">
+          <span style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.9 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 13.5px; font-weight: 600; color: oklch(0.34 0.015 280)">
+            <span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+            Why builds fail
+          </span>
+          <h2 style="margin: 0; max-width: 22ch; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">Three ways a good design ships badly</h2>
+        </div>
+        <p style="margin: 0; max-width: 42ch; font-size: 16px; line-height: 1.65; color: oklch(0.46 0.015 280); text-wrap: pretty">The design is rarely the problem. <strong style="font-weight: 700; color: oklch(0.196 0.021 279)">The build is.</strong></p>
+      </div>
+
+      <div data-nx-probs="" style="margin-top: clamp(40px, 5vw, 64px); display: grid; gap: clamp(16px, 2vw, 24px)">
+        <div style="display: flex; flex-direction: column; gap: 12px; padding: clamp(26px, 2.8vw, 34px); border-radius: 14px; background: oklch(0.196 0.021 279)">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: oklch(0.72 0.17 40)">01</span>
+          <h3 style="margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.28; color: oklch(0.99 0.003 280)">It is slow where it counts</h3>
+          <p style="margin: 0; max-width: 32ch; font-size: 15.5px; line-height: 1.6; color: oklch(0.78 0.015 280); text-wrap: pretty">Three seconds on mobile and most of the traffic you paid for is already gone.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; padding: clamp(26px, 2.8vw, 34px); border-radius: 14px; background: oklch(0.196 0.021 279)">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: oklch(0.72 0.17 40)">02</span>
+          <h3 style="margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.28; color: oklch(0.99 0.003 280)">It breaks under real content</h3>
+          <p style="margin: 0; max-width: 32ch; font-size: 15.5px; line-height: 1.6; color: oklch(0.78 0.015 280); text-wrap: pretty">The build only holds together with the exact text and images it launched with.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; padding: clamp(26px, 2.8vw, 34px); border-radius: 14px; background: oklch(0.196 0.021 279)">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: oklch(0.72 0.17 40)">03</span>
+          <h3 style="margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.28; color: oklch(0.99 0.003 280)">Every change needs a developer</h3>
+          <p style="margin: 0; max-width: 32ch; font-size: 15.5px; line-height: 1.6; color: oklch(0.78 0.015 280); text-wrap: pretty">Marketing waits a week to publish a page. Momentum dies in the queue.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 3. WHAT YOU GET ═══════════════ -->
+  <section id="get" data-reveal style="position: relative; z-index: 1">
+    <div style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+      <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
+        <span style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.9 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 13.5px; font-weight: 600; color: oklch(0.34 0.015 280)">
+          <span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+          What you get
+        </span>
+        <h2 style="margin: 0; max-width: 22ch; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">A build that survives contact with your team</h2>
+      </div>
+
+      <div data-nx-get="" style="margin-top: clamp(40px, 5vw, 64px); display: grid; gap: 0 clamp(32px, 5vw, 80px)">
+        <div style="display: flex; flex-direction: column; gap: 9px; padding: clamp(22px, 2.4vw, 28px) 0; border-top: 1px solid oklch(0.91 0.006 280)">
+          <h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; color: oklch(0.196 0.021 279)">Build from your designs</h3>
+          <p style="margin: 0; max-width: 40ch; font-size: 15.5px; line-height: 1.6; color: oklch(0.48 0.015 280); text-wrap: pretty">Figma to production, pixel-accurate, no redesign by stealth.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 9px; padding: clamp(22px, 2.4vw, 28px) 0; border-top: 1px solid oklch(0.91 0.006 280)">
+          <h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; color: oklch(0.196 0.021 279)">CMS modelling</h3>
+          <p style="margin: 0; max-width: 40ch; font-size: 15.5px; line-height: 1.6; color: oklch(0.48 0.015 280); text-wrap: pretty">Components your team can recombine into new pages on their own.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 9px; padding: clamp(22px, 2.4vw, 28px) 0; border-top: 1px solid oklch(0.91 0.006 280)">
+          <h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; color: oklch(0.196 0.021 279)">Integrations</h3>
+          <p style="margin: 0; max-width: 40ch; font-size: 15.5px; line-height: 1.6; color: oklch(0.48 0.015 280); text-wrap: pretty">CRM, analytics, chat, payments — wired and tested.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 9px; padding: clamp(22px, 2.4vw, 28px) 0; border-top: 1px solid oklch(0.91 0.006 280)">
+          <h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; color: oklch(0.196 0.021 279)">Performance budget</h3>
+          <p style="margin: 0; max-width: 40ch; font-size: 15.5px; line-height: 1.6; color: oklch(0.48 0.015 280); text-wrap: pretty">A target agreed up front, measured on every page before launch.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 9px; padding: clamp(22px, 2.4vw, 28px) 0; border-top: 1px solid oklch(0.91 0.006 280)">
+          <h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; color: oklch(0.196 0.021 279)">Accessibility</h3>
+          <p style="margin: 0; max-width: 40ch; font-size: 15.5px; line-height: 1.6; color: oklch(0.48 0.015 280); text-wrap: pretty">Semantic markup, keyboard paths, contrast checked against WCAG AA.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 9px; padding: clamp(22px, 2.4vw, 28px) 0; border-top: 1px solid oklch(0.91 0.006 280)">
+          <h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; color: oklch(0.196 0.021 279)">Browser and device QA</h3>
+          <p style="margin: 0; max-width: 40ch; font-size: 15.5px; line-height: 1.6; color: oklch(0.48 0.015 280); text-wrap: pretty">Real devices, not just a resized window.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 4. A RECENT REBUILD (PERFORMANCE) ═══════════════ -->
+  <section id="rebuild" data-reveal style="position: relative; z-index: 1">
+    <div style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+      <div data-nx-gaps-head="" style="display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(24px, 5vw, 72px); align-items: end">
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px; max-width: 52ch">
+          <span style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.9 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 13.5px; font-weight: 600; color: oklch(0.34 0.015 280)">
+            <span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+            A recent rebuild
+          </span>
+          <h2 style="margin: 0; max-width: 22ch; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">Same design, rebuilt properly</h2>
+        </div>
+        <p style="margin: 0; max-width: 42ch; font-size: 16px; line-height: 1.65; color: oklch(0.46 0.015 280); text-wrap: pretty">We did not change how it looks. We changed what it costs the visitor to load it.</p>
+      </div>
+
+      <div style="margin-top: clamp(40px, 5vw, 64px); border: 1px solid oklch(0.91 0.006 280); border-radius: 16px; background: oklch(1 0 0); overflow: hidden">
+        <div data-nx-perfhead="" style="padding: 18px clamp(24px, 3vw, 36px); background: oklch(0.972 0.004 280); font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.56 0.015 280)">
+          <span>Metric</span>
+          <span>Before</span>
+          <span></span>
+          <span style="color: oklch(0.196 0.021 279)">After</span>
+        </div>
+        <div data-nx-perfrow="" style="display: grid; gap: clamp(12px, 2vw, 28px); align-items: center; padding: clamp(20px, 2.2vw, 26px) clamp(24px, 3vw, 36px)">
+          <span style="display: flex; flex-direction: column; gap: 4px">
+            <span style="font-size: 16.5px; font-weight: 700; letter-spacing: -0.02em; color: oklch(0.196 0.021 279)">Performance</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.6 0.015 280)">Lighthouse, mobile</span>
+          </span>
+          <span style="font-size: clamp(20px, 2vw, 26px); font-weight: 700; letter-spacing: -0.03em; color: oklch(0.66 0.012 280)">41</span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: oklch(0.665 0.184 36)">→</span>
+          <span style="font-size: clamp(22px, 2.2vw, 30px); font-weight: 800; letter-spacing: -0.035em; color: oklch(0.665 0.184 36)">98</span>
+        </div>
+        <div data-nx-perfrow="" style="display: grid; gap: clamp(12px, 2vw, 28px); align-items: center; padding: clamp(20px, 2.2vw, 26px) clamp(24px, 3vw, 36px); border-top: 1px solid oklch(0.93 0.005 280)">
+          <span style="display: flex; flex-direction: column; gap: 4px">
+            <span style="font-size: 16.5px; font-weight: 700; letter-spacing: -0.02em; color: oklch(0.196 0.021 279)">LCP</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.6 0.015 280)">Largest contentful paint</span>
+          </span>
+          <span style="font-size: clamp(20px, 2vw, 26px); font-weight: 700; letter-spacing: -0.03em; color: oklch(0.66 0.012 280)">4.8s</span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: oklch(0.665 0.184 36)">→</span>
+          <span style="font-size: clamp(22px, 2.2vw, 30px); font-weight: 800; letter-spacing: -0.035em; color: oklch(0.665 0.184 36)">1.2s</span>
+        </div>
+        <div data-nx-perfrow="" style="display: grid; gap: clamp(12px, 2vw, 28px); align-items: center; padding: clamp(20px, 2.2vw, 26px) clamp(24px, 3vw, 36px); border-top: 1px solid oklch(0.93 0.005 280)">
+          <span style="display: flex; flex-direction: column; gap: 4px">
+            <span style="font-size: 16.5px; font-weight: 700; letter-spacing: -0.02em; color: oklch(0.196 0.021 279)">CLS</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.6 0.015 280)">Cumulative layout shift</span>
+          </span>
+          <span style="font-size: clamp(20px, 2vw, 26px); font-weight: 700; letter-spacing: -0.03em; color: oklch(0.66 0.012 280)">0.31</span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: oklch(0.665 0.184 36)">→</span>
+          <span style="font-size: clamp(22px, 2.2vw, 30px); font-weight: 800; letter-spacing: -0.035em; color: oklch(0.665 0.184 36)">0.01</span>
+        </div>
+        <div data-nx-perfrow="" style="display: grid; gap: clamp(12px, 2vw, 28px); align-items: center; padding: clamp(20px, 2.2vw, 26px) clamp(24px, 3vw, 36px); border-top: 1px solid oklch(0.93 0.005 280)">
+          <span style="display: flex; flex-direction: column; gap: 4px">
+            <span style="font-size: 16.5px; font-weight: 700; letter-spacing: -0.02em; color: oklch(0.196 0.021 279)">Page weight</span>
+            <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.6 0.015 280)">Homepage, uncached</span>
+          </span>
+          <span style="font-size: clamp(20px, 2vw, 26px); font-weight: 700; letter-spacing: -0.03em; color: oklch(0.66 0.012 280)">5.4 MB</span>
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: oklch(0.665 0.184 36)">→</span>
+          <span style="font-size: clamp(22px, 2.2vw, 30px); font-weight: 800; letter-spacing: -0.035em; color: oklch(0.665 0.184 36)">680 KB</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 5. BUILD PROCESS ═══════════════ -->
+  <section id="build" data-reveal style="position: relative; z-index: 1">
+    <div style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+      <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
+        <span style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.9 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 13.5px; font-weight: 600; color: oklch(0.34 0.015 280)">
+          <span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+          How the build runs
+        </span>
+        <h2 style="margin: 0; max-width: 22ch; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">Two to four weeks, start to ship</h2>
+      </div>
+
+      <div data-nx-steps4="" style="margin-top: clamp(40px, 5vw, 64px); display: grid; gap: clamp(20px, 2.6vw, 32px)">
+        <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 24px; border-top: 1px solid oklch(0.91 0.006 280)">
+          <span style="display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 500; line-height: 1; color: oklch(0.665 0.184 36)">
+            <span style="width: 22px; height: 1px; background: oklch(0.665 0.184 36); display: block"></span>
+            01
+          </span>
+          <h3 style="margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.25; color: oklch(0.196 0.021 279)">Handover</h3>
+          <p style="margin: 0; max-width: 26ch; font-size: 15px; line-height: 1.6; color: oklch(0.48 0.015 280); text-wrap: pretty">We read the designs, flag the gaps, and agree the performance target.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 24px; border-top: 1px solid oklch(0.91 0.006 280)">
+          <span style="display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 500; line-height: 1; color: oklch(0.665 0.184 36)">
+            <span style="width: 22px; height: 1px; background: oklch(0.665 0.184 36); display: block"></span>
+            02
+          </span>
+          <h3 style="margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.25; color: oklch(0.196 0.021 279)">Components</h3>
+          <p style="margin: 0; max-width: 26ch; font-size: 15px; line-height: 1.6; color: oklch(0.48 0.015 280); text-wrap: pretty">The design system built once, so pages become assembly rather than work.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 24px; border-top: 1px solid oklch(0.91 0.006 280)">
+          <span style="display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 500; line-height: 1; color: oklch(0.665 0.184 36)">
+            <span style="width: 22px; height: 1px; background: oklch(0.665 0.184 36); display: block"></span>
+            03
+          </span>
+          <h3 style="margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.25; color: oklch(0.196 0.021 279)">Pages and CMS</h3>
+          <p style="margin: 0; max-width: 26ch; font-size: 15px; line-height: 1.6; color: oklch(0.48 0.015 280); text-wrap: pretty">Every page wired to content your team can edit.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 24px; border-top: 1px solid oklch(0.91 0.006 280)">
+          <span style="display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 15px; font-weight: 500; line-height: 1; color: oklch(0.665 0.184 36)">
+            <span style="width: 22px; height: 1px; background: oklch(0.665 0.184 36); display: block"></span>
+            04
+          </span>
+          <h3 style="margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.25; color: oklch(0.196 0.021 279)">QA and launch</h3>
+          <p style="margin: 0; max-width: 26ch; font-size: 15px; line-height: 1.6; color: oklch(0.48 0.015 280); text-wrap: pretty">Real devices, accessibility pass, then handover with the repo and training.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 6. TECH STACK ═══════════════ -->
+  <section id="stack" data-reveal style="position: relative; z-index: 1">
+    <div style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+      <div data-nx-gaps-head="" style="display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(24px, 5vw, 72px); align-items: end">
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px; max-width: 52ch">
+          <span style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.9 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 13.5px; font-weight: 600; color: oklch(0.34 0.015 280)">
+            <span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+            What we build on
+          </span>
+          <h2 style="margin: 0; max-width: 22ch; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">Your stack, not ours</h2>
+        </div>
+        <p style="margin: 0; max-width: 42ch; font-size: 16px; line-height: 1.65; color: oklch(0.46 0.015 280); text-wrap: pretty">We work in what your team can maintain after we hand it over.</p>
+      </div>
+
+      <div style="margin-top: clamp(36px, 4.4vw, 56px); display: flex; flex-wrap: wrap; gap: 10px">
+        <span style="display: inline-flex; align-items: center; height: 48px; padding: 0 22px; border: 1px solid oklch(0.91 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 15.5px; font-weight: 600; color: oklch(0.3 0.015 280)">Next.js</span>
+        <span style="display: inline-flex; align-items: center; height: 48px; padding: 0 22px; border: 1px solid oklch(0.91 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 15.5px; font-weight: 600; color: oklch(0.3 0.015 280)">React</span>
+        <span style="display: inline-flex; align-items: center; height: 48px; padding: 0 22px; border: 1px solid oklch(0.91 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 15.5px; font-weight: 600; color: oklch(0.3 0.015 280)">WordPress</span>
+        <span style="display: inline-flex; align-items: center; height: 48px; padding: 0 22px; border: 1px solid oklch(0.91 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 15.5px; font-weight: 600; color: oklch(0.3 0.015 280)">Webflow</span>
+        <span style="display: inline-flex; align-items: center; height: 48px; padding: 0 22px; border: 1px solid oklch(0.91 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 15.5px; font-weight: 600; color: oklch(0.3 0.015 280)">Shopify</span>
+        <span style="display: inline-flex; align-items: center; height: 48px; padding: 0 22px; border: 1px solid oklch(0.91 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 15.5px; font-weight: 600; color: oklch(0.3 0.015 280)">Vercel</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 7. REVIEWS ═══════════════ -->
+  <section id="reviews" data-reveal style="position: relative; z-index: 1">
+    <div style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+      <div data-nx-rev="" style="display: grid; gap: clamp(32px, 5vw, 64px); align-items: start">
+
+        <div style="position: sticky; top: 108px; display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
+          <span style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.9 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 13.5px; font-weight: 600; color: oklch(0.34 0.015 280)">
+            <span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+            What our clients say
+          </span>
+          <h2 style="margin: 0; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">Reviewed where it counts</h2>
+          <p style="margin: 0; max-width: 30ch; font-size: 16px; line-height: 1.62; color: oklch(0.46 0.015 280); text-wrap: pretty">Verified on Trustpilot and Upwork, and said out loud on camera.</p>
+          <a href="#contact" class="btn-hover-orange-dark" style="margin-top: 8px; display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 28px; border-radius: 8px; background: oklch(0.665 0.184 36); color: oklch(0.99 0.003 280); font-size: 16px; font-weight: 600; letter-spacing: -0.01em">
+            Free consultation
+            <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+          </a>
+        </div>
+
+        <div data-nx-revgrid="" style="display: grid; gap: 20px; align-items: start">
+          <div style="display: flex; flex-direction: column; gap: 20px">
+            <div style="border: 1px solid oklch(0.91 0.006 280); border-radius: 14px; overflow: hidden; background: oklch(1 0 0)">
+              <div style="position: relative; aspect-ratio: 4 / 3; background-color: oklch(0.95 0.004 280); background-image: repeating-linear-gradient(135deg, oklch(0.9 0.008 280) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center">
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.5 0.015 280); background: oklch(1 0 0); border: 1px solid oklch(0.9 0.006 280); border-radius: 4px; padding: 5px 10px">video still</span>
+                <button type="button" aria-label="Play testimonial" style="position: absolute; right: 16px; bottom: 16px; width: 48px; height: 48px; border: 0; border-radius: 50%; background: oklch(0.665 0.184 36); color: oklch(0.99 0.003 280); font-size: 15px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px -12px oklch(0.196 0.021 279 / 0.7)">▶</button>
+              </div>
+              <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px">
+                <p style="margin: 0; font-size: 16px; font-weight: 600; line-height: 1.5; letter-spacing: -0.01em; color: oklch(0.196 0.021 279); text-wrap: pretty">"The front-end code shipped ahead of schedule and passed our internal security and Lighthouse audits on the first pass."</p>
+                <span style="display: flex; flex-direction: column; gap: 3px">
+                  <span style="font-size: 14.5px; font-weight: 700; color: oklch(0.196 0.021 279)">Marcus Lindqvist</span>
+                  <span style="font-size: 13.5px; color: oklch(0.52 0.015 280)">VP Engineering | SaaS Flow</span>
+                </span>
+              </div>
+            </div>
+            <div style="border-radius: 14px; background: oklch(0.196 0.021 279); padding: 26px; display: flex; flex-direction: column; gap: 14px">
+              <span style="display: inline-flex; align-items: center; gap: 7px; font-size: 16px; font-weight: 700; letter-spacing: -0.02em; color: oklch(0.99 0.003 280)"><span style="color: oklch(0.72 0.16 165); font-size: 17px">★</span>Trustpilot</span>
+              <h3 style="margin: 0; font-size: 16.5px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.35; color: oklch(0.99 0.003 280)">Clean component architecture</h3>
+              <p style="margin: 0; font-size: 15px; line-height: 1.6; color: oklch(0.78 0.015 280); text-wrap: pretty">Our marketing team was able to launch 5 campaign pages within the first week without touching code.</p>
+              <span style="margin-top: 4px; display: flex; align-items: center; gap: 12px">
+                <span style="width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; background: oklch(0.3 0.02 280); color: oklch(0.75 0.02 280); display: inline-flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.06em; text-transform: uppercase">PHOTO</span>
+                <span style="display: flex; flex-direction: column; gap: 2px">
+                  <span style="font-size: 14px; font-weight: 700; color: oklch(0.99 0.003 280)">Sarah Jenkins</span>
+                  <span style="font-size: 13px; color: oklch(0.7 0.015 280)">Head of Growth | FinTech Global</span>
+                </span>
+              </span>
+            </div>
+          </div>
+          <div data-nx-revcol="" style="display: flex; flex-direction: column; gap: 20px">
+            <div style="border-radius: 14px; background: oklch(0.196 0.021 279); padding: 26px; display: flex; flex-direction: column; gap: 14px">
+              <span style="display: inline-flex; align-items: center; gap: 7px; font-size: 16px; font-weight: 700; letter-spacing: -0.02em; color: oklch(0.99 0.003 280)"><span style="width: 9px; height: 9px; border-radius: 50%; background: oklch(0.72 0.16 155); display: block"></span>Upwork</span>
+              <h3 style="margin: 0; font-size: 16.5px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.35; color: oklch(0.99 0.003 280)">Flawless execution</h3>
+              <p style="margin: 0; font-size: 15px; line-height: 1.6; color: oklch(0.78 0.015 280); text-wrap: pretty">They took our Figma files and handed back a pixel-perfect Next.js codebase in 3 weeks.</p>
+              <span style="margin-top: 4px; display: flex; align-items: center; gap: 12px">
+                <span style="width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; background: oklch(0.3 0.02 280); color: oklch(0.75 0.02 280); display: inline-flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', monospace; font-size: 8px; letter-spacing: 0.06em; text-transform: uppercase">PHOTO</span>
+                <span style="display: flex; flex-direction: column; gap: 2px">
+                  <span style="font-size: 14px; font-weight: 700; color: oklch(0.99 0.003 280)">David Chen</span>
+                  <span style="font-size: 13px; color: oklch(0.7 0.015 280)">Founder | CloudOps</span>
+                </span>
+              </span>
+            </div>
+            <div style="border: 1px solid oklch(0.91 0.006 280); border-radius: 14px; overflow: hidden; background: oklch(1 0 0)">
+              <div style="position: relative; aspect-ratio: 4 / 3; background-color: oklch(0.95 0.004 280); background-image: repeating-linear-gradient(135deg, oklch(0.9 0.008 280) 0 1px, transparent 1px 10px); display: flex; align-items: center; justify-content: center">
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.5 0.015 280); background: oklch(1 0 0); border: 1px solid oklch(0.9 0.006 280); border-radius: 4px; padding: 5px 10px">video still</span>
+                <button type="button" aria-label="Play testimonial" style="position: absolute; right: 16px; bottom: 16px; width: 48px; height: 48px; border: 0; border-radius: 50%; background: oklch(0.665 0.184 36); color: oklch(0.99 0.003 280); font-size: 15px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px -12px oklch(0.196 0.021 279 / 0.7)">▶</button>
+              </div>
+              <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px">
+                <p style="margin: 0; font-size: 16px; font-weight: 600; line-height: 1.5; letter-spacing: -0.01em; color: oklch(0.196 0.021 279); text-wrap: pretty">"Page speed went from 42 to 99 on mobile immediately after the rebuild."</p>
+                <span style="display: flex; flex-direction: column; gap: 3px">
+                  <span style="font-size: 14.5px; font-weight: 700; color: oklch(0.196 0.021 279)">Elena Rostova</span>
+                  <span style="font-size: 13.5px; color: oklch(0.52 0.015 280)">CTO | DataLayer</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 8. RECENT BUILDS (CASE STUDIES) ═══════════════ -->
+  <section id="work" data-reveal style="position: relative; z-index: 1">
+    <div style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+      <div data-nx-svc-head="" style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: end">
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
+          <span style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.9 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 13.5px; font-weight: 600; color: oklch(0.34 0.015 280)">
+            <span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+            Recent builds
+          </span>
+          <h2 style="margin: 0; max-width: 22ch; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">Three we can talk about</h2>
+        </div>
+        <a href="case-studies.html" class="btn-hover-outline" style="display: inline-flex; align-items: center; gap: 10px; height: 50px; padding: 0 24px; border-radius: 8px; border: 1px solid oklch(0.87 0.008 280); background: oklch(1 0 0); color: oklch(0.24 0.015 280); font-size: 15.5px; font-weight: 600">
+          All case studies
+          <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+        </a>
+      </div>
+
+      <div data-nx-wcase="" style="margin-top: clamp(40px, 5vw, 64px); display: grid; gap: clamp(18px, 2.2vw, 26px)">
+        <a href="case-studies.html" class="case-card-link" style="display: flex; flex-direction: column; border: 1px solid oklch(0.91 0.006 280); border-radius: 14px; overflow: hidden; background: oklch(1 0 0); color: oklch(0.196 0.021 279)">
+          <div style="aspect-ratio: 16 / 10; overflow: hidden; background-color: oklch(0.95 0.004 280)">
+            <img src="images/case-study-thumb.webp" alt="Artrabia Case Study" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center" />
+          </div>
+          <div style="padding: 24px; display: flex; flex-direction: column; gap: 11px">
+            <span style="display: flex; flex-wrap: wrap; align-items: center; align-content: flex-start; gap: 4px 10px; min-height: 28px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.56 0.015 280)">
+              SaaS
+              <span style="width: 3px; height: 3px; border-radius: 50%; background: oklch(0.78 0.01 280); display: inline-block; align-self: center"></span>
+              Build only
+            </span>
+            <span style="font-size: 19px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.25">Artrabia</span>
+            <span style="font-size: 15px; line-height: 1.55; color: oklch(0.48 0.015 280); text-wrap: pretty">Drone technology platform rebuild with 3.2× lead bookings</span>
+          </div>
+        </a>
+        <a href="case-studies.html" class="case-card-link" style="display: flex; flex-direction: column; border: 1px solid oklch(0.91 0.006 280); border-radius: 14px; overflow: hidden; background: oklch(1 0 0); color: oklch(0.196 0.021 279)">
+          <div style="aspect-ratio: 16 / 10; overflow: hidden; background-color: oklch(0.95 0.004 280)">
+            <img src="images/case-study-thumb.webp" alt="Case Study" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center" />
+          </div>
+          <div style="padding: 24px; display: flex; flex-direction: column; gap: 11px">
+            <span style="display: flex; flex-wrap: wrap; align-items: center; align-content: flex-start; gap: 4px 10px; min-height: 28px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.56 0.015 280)">
+              B2B services
+              <span style="width: 3px; height: 3px; border-radius: 50%; background: oklch(0.78 0.01 280); display: inline-block; align-self: center"></span>
+              Build + CMS
+            </span>
+            <span style="font-size: 19px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.25">Vertex Advisory</span>
+            <span style="font-size: 15px; line-height: 1.55; color: oklch(0.48 0.015 280); text-wrap: pretty">Webflow build with custom headless CRM integration</span>
+          </div>
+        </a>
+        <a href="case-studies.html" class="case-card-link" style="display: flex; flex-direction: column; border: 1px solid oklch(0.91 0.006 280); border-radius: 14px; overflow: hidden; background: oklch(1 0 0); color: oklch(0.196 0.021 279)">
+          <div style="aspect-ratio: 16 / 10; overflow: hidden; background-color: oklch(0.95 0.004 280)">
+            <img src="images/case-study-thumb.webp" alt="Case Study" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center" />
+          </div>
+          <div style="padding: 24px; display: flex; flex-direction: column; gap: 11px">
+            <span style="display: flex; flex-wrap: wrap; align-items: center; align-content: flex-start; gap: 4px 10px; min-height: 28px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.56 0.015 280)">
+              E-commerce
+              <span style="width: 3px; height: 3px; border-radius: 50%; background: oklch(0.78 0.01 280); display: inline-block; align-self: center"></span>
+              Front-end rebuild
+            </span>
+            <span style="font-size: 19px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.25">Lumina Supply</span>
+            <span style="font-size: 15px; line-height: 1.55; color: oklch(0.48 0.015 280); text-wrap: pretty">Shopify headless build with sub-second page loads</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 9. SCOPE AND PRICING ═══════════════ -->
+  <section id="pricing" data-reveal style="position: relative; z-index: 1">
+    <div style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+      <div data-nx-gaps-head="" style="display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: clamp(24px, 5vw, 72px); align-items: end">
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px; max-width: 52ch">
+          <span style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.9 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 13.5px; font-weight: 600; color: oklch(0.34 0.015 280)">
+            <span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+            Scope and price
+          </span>
+          <h2 style="margin: 0; max-width: 22ch; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">Build only, quoted flat</h2>
+        </div>
+        <p style="margin: 0; max-width: 42ch; font-size: 16px; line-height: 1.65; color: oklch(0.46 0.015 280); text-wrap: pretty">Design already done means a smaller number. <strong style="font-weight: 700; color: oklch(0.196 0.021 279)">No hourly billing and no surprise line items.</strong></p>
+      </div>
+
+      <div data-nx-tiers="" style="margin-top: clamp(40px, 5vw, 64px); display: grid; gap: clamp(16px, 2vw, 24px)">
+        <div style="display: flex; flex-direction: column; gap: 14px; padding: clamp(24px, 2.6vw, 32px); border: 1px solid oklch(0.91 0.006 280); border-radius: 14px; background: oklch(1 0 0)">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.665 0.184 36)">Landing page</span>
+          <span style="font-size: 24px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: oklch(0.196 0.021 279)">From $1,200</span>
+          <p style="margin: 0; max-width: 24ch; font-size: 15px; line-height: 1.55; color: oklch(0.48 0.015 280); text-wrap: pretty">One page, shipped fast.</p>
+          <div style="margin-top: 6px; display: flex; flex-direction: column; gap: 9px">
+            <span style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: oklch(0.32 0.015 280)"><span style="width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span>Single page from your design</span>
+            <span style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: oklch(0.32 0.015 280)"><span style="width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span>Responsive and accessible</span>
+            <span style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: oklch(0.32 0.015 280)"><span style="width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span>CMS-editable sections</span>
+            <span style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: oklch(0.32 0.015 280)"><span style="width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span>Analytics wired</span>
+          </div>
+          <a href="#contact" style="margin-top: auto; padding-top: 22px; display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: oklch(0.3 0.015 280)">
+            Book a call
+            <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+          </a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px; padding: clamp(24px, 2.6vw, 32px); border: 1px solid oklch(0.196 0.021 279); border-radius: 14px; background: oklch(0.196 0.021 279)">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.72 0.17 40)">Marketing site</span>
+          <span style="font-size: 24px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: oklch(0.99 0.003 280)">From $4,500</span>
+          <p style="margin: 0; max-width: 24ch; font-size: 15px; line-height: 1.55; color: oklch(0.78 0.015 280); text-wrap: pretty">The usual scope.</p>
+          <div style="margin-top: 6px; display: flex; flex-direction: column; gap: 9px">
+            <span style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: oklch(0.92 0.008 280)"><span style="width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: oklch(0.72 0.17 40); flex-shrink: 0; display: block"></span>Up to 10 pages</span>
+            <span style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: oklch(0.92 0.008 280)"><span style="width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: oklch(0.72 0.17 40); flex-shrink: 0; display: block"></span>Component library</span>
+            <span style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: oklch(0.92 0.008 280)"><span style="width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: oklch(0.72 0.17 40); flex-shrink: 0; display: block"></span>CMS modelling</span>
+            <span style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: oklch(0.92 0.008 280)"><span style="width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: oklch(0.72 0.17 40); flex-shrink: 0; display: block"></span>Performance budget</span>
+            <span style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: oklch(0.92 0.008 280)"><span style="width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: oklch(0.72 0.17 40); flex-shrink: 0; display: block"></span>Browser and device QA</span>
+          </div>
+          <a href="#contact" style="margin-top: auto; padding-top: 22px; display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: oklch(0.72 0.17 40)">
+            Book a call
+            <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+          </a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px; padding: clamp(24px, 2.6vw, 32px); border: 1px solid oklch(0.91 0.006 280); border-radius: 14px; background: oklch(1 0 0)">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.665 0.184 36)">Platform build</span>
+          <span style="font-size: 24px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: oklch(0.196 0.021 279)">From $9,000</span>
+          <p style="margin: 0; max-width: 24ch; font-size: 15px; line-height: 1.55; color: oklch(0.48 0.015 280); text-wrap: pretty">Integrations and logic.</p>
+          <div style="margin-top: 6px; display: flex; flex-direction: column; gap: 9px">
+            <span style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: oklch(0.32 0.015 280)"><span style="width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span>Unlimited pages</span>
+            <span style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: oklch(0.32 0.015 280)"><span style="width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span>CRM and product integrations</span>
+            <span style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: oklch(0.32 0.015 280)"><span style="width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span>Auth or gated content</span>
+            <span style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: oklch(0.32 0.015 280)"><span style="width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span>Staging and CI</span>
+          </div>
+          <a href="#contact" style="margin-top: auto; padding-top: 22px; display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: oklch(0.3 0.015 280)">
+            Book a call
+            <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+          </a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px; padding: clamp(24px, 2.6vw, 32px); border: 1px solid oklch(0.91 0.006 280); border-radius: 14px; background: oklch(1 0 0)">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.665 0.184 36)">Maintenance</span>
+          <span style="font-size: 24px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: oklch(0.196 0.021 279)">$800 / mo</span>
+          <p style="margin: 0; max-width: 24ch; font-size: 15px; line-height: 1.55; color: oklch(0.48 0.015 280); text-wrap: pretty">After launch.</p>
+          <div style="margin-top: 6px; display: flex; flex-direction: column; gap: 9px">
+            <span style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: oklch(0.32 0.015 280)"><span style="width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span>Updates and fixes</span>
+            <span style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: oklch(0.32 0.015 280)"><span style="width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span>Performance monitoring</span>
+            <span style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: oklch(0.32 0.015 280)"><span style="width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span>New pages on request</span>
+            <span style="display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: oklch(0.32 0.015 280)"><span style="width: 5px; height: 5px; margin-top: 8px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span>Named developer</span>
+          </div>
+          <a href="#contact" style="margin-top: auto; padding-top: 22px; display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 600; color: oklch(0.3 0.015 280)">
+            Book a call
+            <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 10. FAQ ═══════════════ -->
+  <section id="faq" data-reveal style="position: relative; z-index: 1">
+    <div style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+      <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
+        <span style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.9 0.006 280); border-radius: 999px; background: oklch(1 0 0); font-size: 13.5px; font-weight: 600; color: oklch(0.34 0.015 280)">
+          <span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+          Questions
+        </span>
+        <h2 style="margin: 0; max-width: 22ch; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -0.035em; font-weight: 800; text-wrap: balance; color: oklch(0.196 0.021 279)">Asked before every build</h2>
+      </div>
+
+      <div style="margin-top: clamp(36px, 4.4vw, 56px)">
+        <details open="" style="border-top: 1px solid oklch(0.91 0.006 280)">
+          <summary style="list-style: none; padding: 26px 0; display: flex; align-items: center; gap: 24px; cursor: pointer">
+            <span style="flex: 1; font-size: clamp(17px, 1.5vw, 19.5px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.35; color: oklch(0.196 0.021 279)">Do you work from Figma?</span>
+            <span style="flex-shrink: 0; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid oklch(0.9 0.006 280); border-radius: 50%; font-size: 15px; line-height: 1; color: oklch(0.4 0.015 280)">+</span>
+          </summary>
+          <p style="margin: 0; padding: 0 64px 28px 0; max-width: 62ch; font-size: 16px; line-height: 1.65; color: oklch(0.46 0.015 280); text-wrap: pretty">Yes, that is the normal handover. Sketch, XD or a Webflow prototype work too. We read the file, flag anything undefined, and agree the gaps before we start.</p>
+        </details>
+        <details style="border-top: 1px solid oklch(0.91 0.006 280)">
+          <summary style="list-style: none; padding: 26px 0; display: flex; align-items: center; gap: 24px; cursor: pointer">
+            <span style="flex: 1; font-size: clamp(17px, 1.5vw, 19.5px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.35; color: oklch(0.196 0.021 279)">What if the designs are incomplete?</span>
+            <span style="flex-shrink: 0; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid oklch(0.9 0.006 280); border-radius: 50%; font-size: 15px; line-height: 1; color: oklch(0.4 0.015 280)">+</span>
+          </summary>
+          <p style="margin: 0; padding: 0 64px 28px 0; max-width: 62ch; font-size: 16px; line-height: 1.65; color: oklch(0.46 0.015 280); text-wrap: pretty">Common, and fine. We list what is missing after handover and either design those states ourselves or wait for yours. Either way you see the list before the quote is final.</p>
+        </details>
+        <details style="border-top: 1px solid oklch(0.91 0.006 280)">
+          <summary style="list-style: none; padding: 26px 0; display: flex; align-items: center; gap: 24px; cursor: pointer">
+            <span style="flex: 1; font-size: clamp(17px, 1.5vw, 19.5px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.35; color: oklch(0.196 0.021 279)">Do we get the repository?</span>
+            <span style="flex-shrink: 0; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid oklch(0.9 0.006 280); border-radius: 50%; font-size: 15px; line-height: 1; color: oklch(0.4 0.015 280)">+</span>
+          </summary>
+          <p style="margin: 0; padding: 0 64px 28px 0; max-width: 62ch; font-size: 16px; line-height: 1.65; color: oklch(0.46 0.015 280); text-wrap: pretty">Yes. It lives in your GitHub from the first commit, with your hosting and your domains. Nothing is held hostage.</p>
+        </details>
+        <details style="border-top: 1px solid oklch(0.91 0.006 280)">
+          <summary style="list-style: none; padding: 26px 0; display: flex; align-items: center; gap: 24px; cursor: pointer">
+            <span style="flex: 1; font-size: clamp(17px, 1.5vw, 19.5px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.35; color: oklch(0.196 0.021 279)">Who hosts it?</span>
+            <span style="flex-shrink: 0; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid oklch(0.9 0.006 280); border-radius: 50%; font-size: 15px; line-height: 1; color: oklch(0.4 0.015 280)">+</span>
+          </summary>
+          <p style="margin: 0; padding: 0 64px 28px 0; max-width: 62ch; font-size: 16px; line-height: 1.65; color: oklch(0.46 0.015 280); text-wrap: pretty">You do. Vercel, Netlify or your own infrastructure. We set it up and hand over the keys.</p>
+        </details>
+        <details style="border-top: 1px solid oklch(0.91 0.006 280)">
+          <summary style="list-style: none; padding: 26px 0; display: flex; align-items: center; gap: 24px; cursor: pointer">
+            <span style="flex: 1; font-size: clamp(17px, 1.5vw, 19.5px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.35; color: oklch(0.196 0.021 279)">Can you take over an existing build?</span>
+            <span style="flex-shrink: 0; width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid oklch(0.9 0.006 280); border-radius: 50%; font-size: 15px; line-height: 1; color: oklch(0.4 0.015 280)">+</span>
+          </summary>
+          <p style="margin: 0; padding: 0 64px 28px 0; max-width: 62ch; font-size: 16px; line-height: 1.65; color: oklch(0.46 0.015 280); text-wrap: pretty">Usually. We audit it first and tell you honestly whether continuing is cheaper than rebuilding — sometimes it is not.</p>
+        </details>
+        <div style="border-top: 1px solid oklch(0.91 0.006 280)"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 11. CONTACT / CTA ═══════════════ -->
+  <section id="contact" data-reveal style="position: relative; z-index: 1">
+    <div style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
+      <div style="position: relative; overflow: hidden; border-radius: 18px; background: oklch(0.196 0.021 279)">
+
+        <div aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden; pointer-events: none">
+          <div style="position: absolute; right: -18%; top: -46%; width: 62%; aspect-ratio: 1; border-radius: 50%; border: 1px solid oklch(0.665 0.184 36 / 0.45)"></div>
+          <div style="position: absolute; right: -6%; top: -22%; width: 34%; aspect-ratio: 1; border-radius: 50%; border: 1px dashed oklch(0.42 0.02 280)"></div>
+          <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background-image: repeating-linear-gradient(to right, oklch(0.4 0.02 280) 0 5px, transparent 5px 12px)"></div>
+        </div>
+
+        <div data-nx-cta2="" style="position: relative; display: grid; gap: clamp(32px, 4.4vw, 72px); padding: clamp(36px, 4.6vw, 68px) clamp(28px, 4vw, 60px)">
+
+          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 22px">
+            <span style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.34 0.02 280); border-radius: 999px; font-size: 13.5px; font-weight: 600; color: oklch(0.88 0.01 280)">
+              <span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+              Two slots left this quarter
+            </span>
+
+            <h2 style="margin: 0; max-width: 15ch; font-size: clamp(32px, 4.2vw, 56px); line-height: 1.04; letter-spacing: -0.04em; font-weight: 800; text-wrap: balance; color: oklch(0.99 0.003 280)">Find the leak <span style="color: oklch(0.72 0.17 40)">first</span></h2>
+
+            <p style="margin: 0; max-width: 34ch; font-size: 16.5px; line-height: 1.62; color: oklch(0.75 0.015 280); text-wrap: pretty">Send the form and you get a one-page audit of what is costing you pipeline. Free, and yours whether we work together or not.</p>
+
+            <div style="margin-top: auto; padding-top: clamp(28px, 3vw, 40px); display: flex; flex-direction: column; gap: 2px; width: 100%">
+              <div style="display: flex; align-items: center; gap: 16px; padding: 15px 0">
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: oklch(0.72 0.17 40); width: 22px; flex-shrink: 0">01</span>
+                <span style="font-size: 16px; font-weight: 700; letter-spacing: -0.02em; color: oklch(0.99 0.003 280); flex: 1">Audit</span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.62 0.02 280)">Free, one page</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 16px; padding: 15px 0; border-top: 1px solid oklch(0.28 0.02 280)">
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: oklch(0.72 0.17 40); width: 22px; flex-shrink: 0">02</span>
+                <span style="font-size: 16px; font-weight: 700; letter-spacing: -0.02em; color: oklch(0.99 0.003 280); flex: 1">Plan</span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.62 0.02 280)">Ranked by return</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 16px; padding: 15px 0; border-top: 1px solid oklch(0.28 0.02 280)">
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: oklch(0.72 0.17 40); width: 22px; flex-shrink: 0">03</span>
+                <span style="font-size: 16px; font-weight: 700; letter-spacing: -0.02em; color: oklch(0.99 0.003 280); flex: 1">Build</span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.62 0.02 280)">Live in stages</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: clamp(22px, 2.6vw, 30px)">
+            <div data-nx-frow="" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: clamp(22px, 2.6vw, 30px)">
+              <label style="display: block">
+                <span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.66 0.02 280)">Your name</span>
+                <input type="text" placeholder="Jane Doe" style="width: 100%; margin-top: 10px; padding: 12px 0; border: 0; border-bottom: 1px solid oklch(0.36 0.02 280); background: transparent; font-family: inherit; font-size: 16px; color: oklch(0.99 0.003 280); outline: none" />
+              </label>
+              <label style="display: block">
+                <span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.66 0.02 280)">Work email</span>
+                <input type="email" placeholder="jane@company.com" style="width: 100%; margin-top: 10px; padding: 12px 0; border: 0; border-bottom: 1px solid oklch(0.36 0.02 280); background: transparent; font-family: inherit; font-size: 16px; color: oklch(0.99 0.003 280); outline: none" />
+              </label>
+            </div>
+            <label style="display: block">
+              <span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.66 0.02 280)">Company website</span>
+              <input type="text" placeholder="company.com" style="width: 100%; margin-top: 10px; padding: 12px 0; border: 0; border-bottom: 1px solid oklch(0.36 0.02 280); background: transparent; font-family: inherit; font-size: 16px; color: oklch(0.99 0.003 280); outline: none" />
+            </label>
+            <div style="display: flex; flex-direction: column">
+              <span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.66 0.02 280)">What do you need</span>
+              <div data-nx-needs="" style="margin-top: 14px; display: flex; flex-wrap: wrap; gap: 9px">
+                <button type="button" class="nx-chip nx-chip-active" style="height: 42px; padding: 0 18px; border-radius: 999px; border: 1px solid oklch(0.665 0.184 36); background: oklch(0.665 0.184 36); color: oklch(0.99 0.003 280); font-family: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s">Everything</button>
+                <button type="button" class="nx-chip" style="height: 42px; padding: 0 18px; border-radius: 999px; border: 1px solid oklch(0.36 0.02 280); background: transparent; color: oklch(0.86 0.01 280); font-family: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s">Website</button>
+                <button type="button" class="nx-chip" style="height: 42px; padding: 0 18px; border-radius: 999px; border: 1px solid oklch(0.36 0.02 280); background: transparent; color: oklch(0.86 0.01 280); font-family: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s">Design</button>
+                <button type="button" class="nx-chip" style="height: 42px; padding: 0 18px; border-radius: 999px; border: 1px solid oklch(0.36 0.02 280); background: transparent; color: oklch(0.86 0.01 280); font-family: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s">Marketing</button>
+                <button type="button" class="nx-chip" style="height: 42px; padding: 0 18px; border-radius: 999px; border: 1px solid oklch(0.36 0.02 280); background: transparent; color: oklch(0.86 0.01 280); font-family: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s">SEO</button>
+              </div>
+            </div>
+            <label style="display: block">
+              <span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.66 0.02 280)">What is not working</span>
+              <textarea rows="2" placeholder="One or two lines is plenty" style="width: 100%; margin-top: 10px; padding: 12px 0; border: 0; border-bottom: 1px solid oklch(0.36 0.02 280); background: transparent; font-family: inherit; font-size: 16px; color: oklch(0.99 0.003 280); outline: none; resize: vertical"></textarea>
+            </label>
+            <div style="margin-top: 4px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px">
+              <button type="button" class="btn-hover-cta-submit" style="height: 58px; padding: 0 32px; display: inline-flex; align-items: center; gap: 10px; border: 0; border-radius: 9px; background: oklch(0.665 0.184 36); color: oklch(0.99 0.003 280); font-family: inherit; font-size: 16.5px; font-weight: 600; letter-spacing: -0.01em; cursor: pointer">
+                Send it
+                <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+              </button>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.62 0.02 280); line-height: 1.6">Reply within one business day<br />No pitch decks, no pressure</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer style="position: relative; z-index: 1; background: oklch(0.196 0.021 279)">
+    <div style="max-width: 1260px; margin: 0 auto; padding: clamp(56px, 7vw, 96px) clamp(16px, 4vw, 40px) clamp(28px, 3vw, 40px)">
+
+      <div data-nx-foot="" style="display: grid; grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr)); gap: clamp(32px, 4vw, 56px)">
+
+        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 20px">
+          <img src="images/LOGO.svg" alt="Nexoos Group" style="display: block; height: 32px; width: auto; filter: brightness(0) invert(1)" />
+          <p style="margin: 0; max-width: 30ch; font-size: 15.5px; line-height: 1.6; color: oklch(0.72 0.015 280); text-wrap: pretty">Website, SEO, content and paid search for B2B and SaaS companies. A decade in, 100+ projects shipped.</p>
+          <a href="contact.html" class="btn-hover-guar" style="display: inline-flex; align-items: center; gap: 10px; height: 50px; padding: 0 24px; border-radius: 8px; background: oklch(0.665 0.184 36); color: oklch(0.99 0.003 280); font-size: 15.5px; font-weight: 600">
+            Free consultation
+            <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+          </a>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 16px">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.62 0.02 280)">Services</span>
+          <nav style="display: flex; flex-direction: column; gap: 11px">
+            <a href="services.html" style="font-size: 15px; color: oklch(0.86 0.01 280)">Websites</a>
+            <a href="services.html" style="font-size: 15px; color: oklch(0.86 0.01 280)">SEO</a>
+            <a href="services.html" style="font-size: 15px; color: oklch(0.86 0.01 280)">Content</a>
+            <a href="services.html" style="font-size: 15px; color: oklch(0.86 0.01 280)">Paid search</a>
+            <a href="services.html" style="font-size: 15px; color: oklch(0.86 0.01 280)">Conversion</a>
+            <a href="services.html" style="font-size: 15px; color: oklch(0.86 0.01 280)">Reporting</a>
+          </nav>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 16px">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.62 0.02 280)">Company</span>
+          <nav style="display: flex; flex-direction: column; gap: 11px">
+            <a href="case-studies.html" style="font-size: 15px; color: oklch(0.86 0.01 280)">Case studies</a>
+            <a href="index.html#process" style="font-size: 15px; color: oklch(0.86 0.01 280)">How it works</a>
+            <a href="#reviews" style="font-size: 15px; color: oklch(0.86 0.01 280)">Reviews</a>
+            <a href="blog.html" style="font-size: 15px; color: oklch(0.86 0.01 280)">Knowledge</a>
+            <a href="#faq" style="font-size: 15px; color: oklch(0.86 0.01 280)">Questions</a>
+          </nav>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 16px">
+          <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.62 0.02 280)">Contact</span>
+          <div style="display: flex; flex-direction: column; gap: 11px">
+            <a href="contact.html" style="font-size: 15px; color: oklch(0.86 0.01 280)">Contact us</a>
+            <a href="mailto:hello@nexoosgroup.com" style="font-size: 15px; color: oklch(0.86 0.01 280)">hello@nexoosgroup.com</a>
+            <span style="font-size: 15px; line-height: 1.55; color: oklch(0.72 0.015 280)">Oslo, Norway</span>
+          </div>
+          <div style="margin-top: 6px; display: flex; gap: 10px">
+            <a href="#contact" aria-label="LinkedIn" class="btn-hover-social" style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid oklch(0.34 0.02 280); border-radius: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: oklch(0.86 0.01 280)">in</a>
+            <a href="#contact" aria-label="Upwork" class="btn-hover-social" style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid oklch(0.34 0.02 280); border-radius: 8px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: oklch(0.86 0.01 280)">Up</a>
+            <a href="#reviews" aria-label="Trustpilot" class="btn-hover-social" style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid oklch(0.34 0.02 280); border-radius: 8px; font-size: 13px; color: oklch(0.86 0.01 280)">★</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div data-nx-footbar="" style="margin-top: clamp(48px, 6vw, 80px); display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px">
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.08em; color: oklch(0.6 0.02 280)">© 2026 Nexoos Group</span>
+        <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.08em; color: oklch(0.6 0.02 280)">ROI or we work free</span>
+        <span style="margin-left: auto; display: flex; gap: 24px">
+          <a href="#privacy" style="font-size: 13.5px; color: oklch(0.72 0.015 280)">Privacy</a>
+          <a href="#terms" style="font-size: 13.5px; color: oklch(0.72 0.015 280)">Terms</a>
+        </span>
+      </div>
+
+    </div>
+  </footer>
+
+</div>
+
+<script>
+/* ═══════════════ CTA CHIP SELECTION ═══════════════ */
+document.querySelectorAll('[data-nx-needs]').forEach(container => {
+  container.addEventListener('click', e => {
+    const chip = e.target.closest('.nx-chip');
+    if (!chip) return;
+    container.querySelectorAll('.nx-chip').forEach(c => {
+      c.classList.remove('nx-chip-active');
+      c.style.background = 'transparent';
+      c.style.borderColor = 'oklch(0.36 0.02 280)';
+      c.style.color = 'oklch(0.86 0.01 280)';
+    });
+    chip.classList.add('nx-chip-active');
+    chip.style.background = 'oklch(0.665 0.184 36)';
+    chip.style.borderColor = 'oklch(0.665 0.184 36)';
+    chip.style.color = 'oklch(0.99 0.003 280)';
+  });
+});
+
+/* ═══════════════ CTA SUBMIT HOVER ═══════════════ */
+document.querySelectorAll('.btn-hover-cta-submit').forEach(el => {
+  el.addEventListener('mouseenter', () => { el.style.background = 'oklch(0.99 0.003 280)'; el.style.color = 'oklch(0.196 0.021 279)'; });
+  el.addEventListener('mouseleave', () => { el.style.background = 'oklch(0.665 0.184 36)'; el.style.color = 'oklch(0.99 0.003 280)'; });
+});
+
+/* ═══════════════ SCROLL REVEAL ═══════════════ */
+function initScrollReveal() {
+  const reveals = document.querySelectorAll('[data-reveal]');
+  if (!reveals.length) return;
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+}
+initScrollReveal();
+
+</script>
+<script src="header.js"></script>
+</body>
+</html>

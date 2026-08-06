@@ -42,7 +42,7 @@
   function megaCol(title, desc, items) {
     return `<div>
       <div class="mega-col-head"><h3>${title}</h3><p>${desc}</p></div>
-      ${items.map(i => `<a href="services.html" class="mega-item">
+      ${items.map(i => `<a href="${i.href || 'services.html'}" class="mega-item">
         <div class="mega-item-icon">${i.icon}</div>
         <div class="mega-item-text"><h4>${i.name}</h4><p>${i.desc}</p></div>
       </a>`).join('')}
@@ -51,24 +51,16 @@
 
   const megaHTML = `<div class="mega-panel"><div class="mega-grid">
     ${megaCol('Design', 'Plan the look, UX and brand', [
-      { icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>', name: 'Web Design', desc: 'Websites, landing pages, and service pages' },
-      { icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>', name: 'UX/UI & Product Design', desc: 'Software, mobile apps, and dashboards' },
-      { icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>', name: 'Branding & Visual Identity', desc: 'Logos, brand systems, visual direction' },
+      { icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>', name: 'Web Design', desc: 'Websites, UX/UI, landing pages & brand identity', href: 'web-design.html' },
     ])}
     ${megaCol('Development', 'Build websites, stores and platforms', [
-      { icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>', name: 'CMS Development', desc: 'WordPress, Webflow, Elementor, and more' },
-      { icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>', name: 'E-commerce Development', desc: 'Shopify and WooCommerce stores' },
-      { icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>', name: 'Full-stack & MVP', desc: 'Dashboards, internal tools, MVP builds' },
+      { icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>', name: 'Web Development', desc: 'Front-end build-only, e-commerce & web platforms', href: 'web-development.html' },
     ])}
     ${megaCol('Marketing', 'Drive traffic and generate leads', [
-      { icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>', name: 'Paid Ads', desc: 'Google Ads, Meta, and paid search' },
-      { icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>', name: 'Email Marketing', desc: 'Campaigns, automation, newsletters' },
-      { icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>', name: 'Social Media', desc: 'Content strategy and management' },
+      { icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>', name: 'Marketing & Paid Ads', desc: 'Google Ads, LinkedIn, Meta & tracking attribution', href: 'marketing.html' },
     ])}
     ${megaCol('SEO', 'Get found and rank higher', [
-      { icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>', name: 'Technical SEO', desc: 'Site speed, crawlability, indexing' },
-      { icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>', name: 'Content SEO', desc: 'Keyword strategy, blog optimization' },
-      { icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>', name: 'Local SEO', desc: 'Google Business, maps, local rankings' },
+      { icon: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>', name: 'SEO Services', desc: 'Technical audit, site speed & keyword rankings', href: 'seo.html' },
     ])}
   </div></div>`;
 
@@ -79,7 +71,7 @@
   const ctaHref = isActive('contact.html') ? '#form' : 'contact.html';
 
   /* ---------- Case studies link ---------- */
-  const caseHref = isActive('index.html') ? '#work' : 'index.html#work';
+  const caseHref = isActive('case-studies.html') ? '#grid' : 'case-studies.html';
 
   /* ---------- Header HTML ---------- */
   const headerHTML = `
@@ -103,7 +95,7 @@
             </a>
             ${megaHTML}
           </div>
-          <a href="${caseHref}" style="color: ${c.linkColor}">Case studies</a>
+          <a href="${caseHref}" style="color: ${linkColor('case-studies.html')}">Case studies</a>
           <a href="blog.html" style="color: ${linkColor('blog.html')}">Knowledge</a>
           <a href="${isActive('contact.html') ? '#form' : 'contact.html'}" style="color: ${linkColor('contact.html')}">Contact</a>
         </nav>

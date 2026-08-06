@@ -63,11 +63,293 @@ article:hover .svc-bg-icon {
   transform: scale(1.18) perspective(600px) rotateY(-8deg) rotateX(4deg) rotate(8deg);
   opacity: 0.18;
   filter: brightness(0) saturate(100%) invert(52%) sepia(88%) saturate(1200%) hue-rotate(345deg) brightness(95%) contrast(95%);
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, filter 0.5s ease;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, filter 0.5s ease;
 }
 article[style*="oklch(0.196"]:hover .svc-bg-icon {
   filter: brightness(0) invert(1);
   opacity: 0.14;
+}
+
+/* ═══════════════ SMOOTH EXPANDING HOVER & HOVER-OUT TRANSITION (2 LARGE ROWS) ═══════════════ */
+
+/* Default transition state for smooth hover-out (Slower & Ultra-Smooth) */
+[data-nx-smock] {
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.65s cubic-bezier(0.25, 1, 0.35, 1);
+}
+
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px -12px oklch(0.196 0.021 279 / 0.16) !important;
+}
+
+[data-nx-smock] div[style*="padding: 26px"] > span:nth-child(2),
+[data-nx-smock] div[style*="padding: 26px"] > span:nth-child(3) {
+  transition: width 0.75s cubic-bezier(0.25, 1, 0.35, 1);
+}
+
+/* Expand the 2 large rows smoothly on hover (ONLY Learn More button hover) */
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="padding: 26px"] > span:nth-child(2) {
+  width: 96% !important;
+}
+
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="padding: 26px"] > span:nth-child(3) {
+  width: 85% !important;
+}
+
+/* --- Orange Button AJAXing Shimmer Effect with Smooth Hover-Out Transition --- */
+[data-nx-smock] div[style*="padding: 26px"] > span:nth-child(6) {
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.6s cubic-bezier(0.25, 1, 0.35, 1);
+}
+
+[data-nx-smock] div[style*="padding: 26px"] > span:nth-child(6)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.45) 50%, transparent 100%);
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.25, 1, 0.35, 1);
+}
+
+@keyframes btnShimmerSweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="padding: 26px"] > span:nth-child(6) {
+  box-shadow: 0 8px 24px -2px oklch(0.665 0.184 36 / 0.55);
+}
+
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="padding: 26px"] > span:nth-child(6)::after {
+  opacity: 1;
+  animation: btnShimmerSweep 1.8s ease-in-out infinite;
+}
+
+/* --- Browser Control Dots Colored on Hover (Smoother & Slower) --- */
+[data-nx-smock] div[style*="height: 34px"] span[style*="border-radius: 50%"] {
+  transition: background-color 0.6s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.6s cubic-bezier(0.25, 1, 0.35, 1);
+}
+
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="height: 34px"] span[style*="border-radius: 50%"]:nth-child(1) {
+  background-color: #ff5f56 !important;
+  box-shadow: 0 0 8px rgba(255, 95, 86, 0.45);
+}
+
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="height: 34px"] span[style*="border-radius: 50%"]:nth-child(2) {
+  background-color: #ffbd2e !important;
+  box-shadow: 0 0 8px rgba(255, 189, 46, 0.45);
+}
+
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="height: 34px"] span[style*="border-radius: 50%"]:nth-child(3) {
+  background-color: #27c93f !important;
+  box-shadow: 0 0 8px rgba(39, 201, 63, 0.45);
+}
+
+/* ═══════════════ ROW 02 DESIGN MOCKUP HOVER & HOVER-OUT ANIMATIONS ═══════════════ */
+
+/* Default transition states for smooth hover-out */
+/* Light card (Left) */
+[data-nx-smock] div[style*="aspect-ratio: 3 / 4"]:first-child {
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.65s ease;
+}
+
+/* Dark card (Right) */
+[data-nx-smock] div[style*="aspect-ratio: 3 / 4"]:last-child {
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.65s ease;
+}
+
+/* Dark card inner orange bar */
+[data-nx-smock] div[style*="aspect-ratio: 3 / 4"]:last-child > span:first-child {
+  transition: width 0.65s cubic-bezier(0.25, 1, 0.35, 1);
+}
+
+/* Color palette circles (4 dots) */
+[data-nx-smock] div[style*="gap: 10px"] > span[style*="border-radius: 50%"] {
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.5s ease;
+}
+
+/* Typography Aa badges */
+[data-nx-smock] div[style*="gap: 10px"] > span[style*="font-size: 26px"] {
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.35, 1), color 0.5s ease;
+}
+
+/* --- HOVER IN STATES --- */
+
+/* Dark card lifts up & tilts */
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="aspect-ratio: 3 / 4"]:last-child {
+  transform: translateY(-10px) rotate(-2deg);
+  box-shadow: 0 32px 65px -25px oklch(0.196 0.021 279 / 0.65) !important;
+}
+
+/* Light card shifts left */
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="aspect-ratio: 3 / 4"]:first-child {
+  transform: translateY(4px) translateX(-6px) rotate(1deg);
+}
+
+/* Orange bar inside dark card expands */
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="aspect-ratio: 3 / 4"]:last-child > span:first-child {
+  width: 80% !important;
+}
+
+/* Color palette dots staggered pop */
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 10px"] > span[style*="border-radius: 50%"]:nth-child(1) {
+  transform: scale(1.2);
+  transition-delay: 0s;
+}
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 10px"] > span[style*="border-radius: 50%"]:nth-child(2) {
+  transform: scale(1.25);
+  box-shadow: 0 0 14px oklch(0.665 0.184 36 / 0.6);
+  transition-delay: 0.06s;
+}
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 10px"] > span[style*="border-radius: 50%"]:nth-child(3) {
+  transform: scale(1.2);
+  transition-delay: 0.12s;
+}
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 10px"] > span[style*="border-radius: 50%"]:nth-child(4) {
+  transform: scale(1.2);
+  transition-delay: 0.18s;
+}
+
+/* Typography Aa pop */
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 10px"] > span[style*="font-size: 26px"] {
+  transform: scale(1.18);
+  color: oklch(0.665 0.184 36) !important;
+}
+
+/* ═══════════════ ROW 03 MARKETING CHANNEL MIX MOCKUP HOVER ANIMATIONS ═══════════════ */
+
+/* Default transition states for smooth hover-out */
+[data-nx-smock] div[style*="gap: 8px"] span[style*="border-radius: 999px"] > span {
+  transition: width 0.7s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+[data-nx-smock] div[style*="gap: 8px"] span[style*="border-radius: 999px"] > span::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+/* Channel labels hover transition */
+[data-nx-smock] div[style*="gap: 8px"] > span:first-child {
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.35, 1), color 0.4s ease;
+}
+
+/* --- HOVER IN STATES --- */
+
+/* Expand Search bar (80% -> 96%) */
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 8px"]:nth-of-type(1) span[style*="border-radius: 999px"] > span {
+  width: 96% !important;
+  box-shadow: 0 0 12px oklch(0.665 0.184 36 / 0.5);
+  transition-delay: 0s;
+}
+
+/* Expand LinkedIn bar (58% -> 82%) */
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 8px"]:nth-of-type(2) span[style*="border-radius: 999px"] > span {
+  width: 82% !important;
+  box-shadow: 0 0 12px oklch(0.665 0.184 36 / 0.5);
+  transition-delay: 0.08s;
+}
+
+/* Expand Email bar (42% -> 68%) */
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 8px"]:nth-of-type(3) span[style*="border-radius: 999px"] > span {
+  width: 68% !important;
+  box-shadow: 0 0 12px oklch(0.665 0.184 36 / 0.5);
+  transition-delay: 0.16s;
+}
+
+/* Expand Referral bar (26% -> 54%) */
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 8px"]:nth-of-type(4) span[style*="border-radius: 999px"] > span {
+  width: 54% !important;
+  box-shadow: 0 0 12px oklch(0.665 0.184 36 / 0.5);
+  transition-delay: 0.24s;
+}
+
+/* Shimmer sweep on hover */
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 8px"] span[style*="border-radius: 999px"] > span::after {
+  opacity: 1;
+  animation: btnShimmerSweep 1.8s ease-in-out infinite;
+}
+
+/* Staggered label shift */
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 8px"]:nth-of-type(1) > span:first-child {
+  transform: translateX(4px);
+  color: oklch(0.665 0.184 36) !important;
+  transition-delay: 0s;
+}
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 8px"]:nth-of-type(2) > span:first-child {
+  transform: translateX(4px);
+  color: oklch(0.665 0.184 36) !important;
+  transition-delay: 0.08s;
+}
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 8px"]:nth-of-type(3) > span:first-child {
+  transform: translateX(4px);
+  color: oklch(0.665 0.184 36) !important;
+  transition-delay: 0.16s;
+}
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 8px"]:nth-of-type(4) > span:first-child {
+  transform: translateX(4px);
+  color: oklch(0.665 0.184 36) !important;
+  transition-delay: 0.24s;
+}
+
+/* ═══════════════ ROW 04 SEO KEYWORD RANKING MOCKUP HOVER ANIMATIONS ═══════════════ */
+
+/* Default transition states for smooth hover-out */
+/* #1 Position row */
+[data-nx-smock] div[style*="padding: 22px"] > div:nth-child(2) {
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.65s ease;
+}
+
+/* #1 Badge icon */
+[data-nx-smock] div[style*="padding: 22px"] > div:nth-child(2) > span:first-child {
+  transition: transform 0.55s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.55s ease;
+}
+
+/* Competitor rows (#2 & #3) */
+[data-nx-smock] div[style*="padding: 22px"] > div:nth-child(n+3) {
+  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.25, 1, 0.35, 1);
+}
+
+/* Top search bar pill */
+[data-nx-smock] div[style*="padding: 22px"] > div:first-child span[style*="background: oklch(0.88 0.008 280)"] {
+  transition: width 0.65s cubic-bezier(0.25, 1, 0.35, 1);
+}
+
+/* --- HOVER IN STATES --- */
+
+/* #1 Rank row lifts up and glows */
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="padding: 22px"] > div:nth-child(2) {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 30px -8px oklch(0.665 0.184 36 / 0.45) !important;
+}
+
+/* #1 Badge pops */
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="padding: 22px"] > div:nth-child(2) > span:first-child {
+  transform: scale(1.15);
+  box-shadow: 0 0 12px oklch(0.665 0.184 36 / 0.6);
+}
+
+/* Competitor rows dim to highlight your #1 rank */
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="padding: 22px"] > div:nth-child(n+3) {
+  opacity: 0.55;
+  transform: scale(0.98);
+}
+
+/* Search bar query expands */
+[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="padding: 22px"] > div:first-child span[style*="background: oklch(0.88 0.008 280)"] {
+  width: 75% !important;
 }
 
 /* ═══════════════ SCROLL ANIMATIONS ═══════════════ */
@@ -143,8 +425,7 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
             <li style="display: flex; align-items: flex-start; gap: 11px; font-size: 15.5px; line-height: 1.5; color: oklch(0.32 0.015 280)"><span style="width: 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span><span>CMS your team can actually use</span></li>
             <li style="display: flex; align-items: flex-start; gap: 11px; font-size: 15.5px; line-height: 1.5; color: oklch(0.32 0.015 280)"><span style="width: 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span><span>Speed and Core Web Vitals</span></li>
           </ul>
-          <span style="margin-top: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.56 0.015 280)">4–6 weeks</span>
-          <a href="contact.html" class="learn-more-link" style="margin-top: 18px; display: inline-flex; align-items: center; gap: 9px; align-self: flex-start; font-size: 15.5px; font-weight: 600; letter-spacing: -0.01em; color: oklch(0.196 0.021 279); border-bottom: 1px solid oklch(0.85 0.01 280); padding-bottom: 3px">
+                 <a href="web-development.html" class="learn-more-link" style="margin-top: 18px; display: inline-flex; align-items: center; gap: 9px; align-self: flex-start; font-size: 15.5px; font-weight: 600; letter-spacing: -0.01em; color: oklch(0.196 0.021 279); border-bottom: 1px solid oklch(0.85 0.01 280); padding-bottom: 3px">
             Learn more
             <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
           </a>
@@ -192,7 +473,7 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
             <li style="display: flex; align-items: flex-start; gap: 11px; font-size: 15.5px; line-height: 1.5; color: oklch(0.32 0.015 280)"><span style="width: 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span><span>Design handoff your devs can use</span></li>
           </ul>
           <span style="margin-top: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.56 0.015 280)">2–4 weeks</span>
-          <a href="contact.html" class="learn-more-link" style="margin-top: 18px; display: inline-flex; align-items: center; gap: 9px; align-self: flex-start; font-size: 15.5px; font-weight: 600; letter-spacing: -0.01em; color: oklch(0.196 0.021 279); border-bottom: 1px solid oklch(0.85 0.01 280); padding-bottom: 3px">
+          <a href="web-design.html" class="learn-more-link" style="margin-top: 18px; display: inline-flex; align-items: center; gap: 9px; align-self: flex-start; font-size: 15.5px; font-weight: 600; letter-spacing: -0.01em; color: oklch(0.196 0.021 279); border-bottom: 1px solid oklch(0.85 0.01 280); padding-bottom: 3px">
             Learn more
             <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
           </a>
@@ -241,13 +522,13 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
             <li style="display: flex; align-items: flex-start; gap: 11px; font-size: 15.5px; line-height: 1.5; color: oklch(0.32 0.015 280)"><span style="width: 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span><span>One monthly review call</span></li>
           </ul>
           <span style="margin-top: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.56 0.015 280)">Ongoing, monthly</span>
-          <a href="contact.html" class="learn-more-link" style="margin-top: 18px; display: inline-flex; align-items: center; gap: 9px; align-self: flex-start; font-size: 15.5px; font-weight: 600; letter-spacing: -0.01em; color: oklch(0.196 0.021 279); border-bottom: 1px solid oklch(0.85 0.01 280); padding-bottom: 3px">
+          <a href="marketing.html" class="learn-more-link" style="margin-top: 18px; display: inline-flex; align-items: center; gap: 9px; align-self: flex-start; font-size: 15.5px; font-weight: 600; letter-spacing: -0.01em; color: oklch(0.196 0.021 279); border-bottom: 1px solid oklch(0.85 0.01 280); padding-bottom: 3px">
             Learn more
             <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
           </a>
         </div>
         <div data-nx-smock style="display: flex; justify-content: center">
-          <div style="width: 100%; max-width: 460px; padding: 26px; border-radius: 12px; border: 1px solid oklch(0.9 0.006 280); background: oklch(1 0 0); box-shadow: 0 30px 60px -34px oklch(0.196 0.021 279 / 0.4); display: flex; flex-direction: column; gap: 20px">
+          <div style="width: 100%; max-width: 460px; padding: 26px; border-radius: 12px; background: oklch(1 0 0); display: flex; flex-direction: column; gap: 20px">
             <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.56 0.015 280)">Channel mix</span>
             <div style="display: flex; flex-direction: column; gap: 8px">
               <span style="font-size: 14.5px; font-weight: 600; color: oklch(0.24 0.015 280)">Search</span>
@@ -295,7 +576,7 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
             <li style="display: flex; align-items: flex-start; gap: 11px; font-size: 15.5px; line-height: 1.5; color: oklch(0.32 0.015 280)"><span style="width: 5px; height: 5px; margin-top: 9px; border-radius: 50%; background: oklch(0.665 0.184 36); flex-shrink: 0; display: block"></span><span>Monthly rank and traffic report</span></li>
           </ul>
           <span style="margin-top: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: oklch(0.56 0.015 280)">Compounds over 2–3 quarters</span>
-          <a href="contact.html" class="learn-more-link" style="margin-top: 18px; display: inline-flex; align-items: center; gap: 9px; align-self: flex-start; font-size: 15.5px; font-weight: 600; letter-spacing: -0.01em; color: oklch(0.196 0.021 279); border-bottom: 1px solid oklch(0.85 0.01 280); padding-bottom: 3px">
+          <a href="seo.html" class="learn-more-link" style="margin-top: 18px; display: inline-flex; align-items: center; gap: 9px; align-self: flex-start; font-size: 15.5px; font-weight: 600; letter-spacing: -0.01em; color: oklch(0.196 0.021 279); border-bottom: 1px solid oklch(0.85 0.01 280); padding-bottom: 3px">
             Learn more
             <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
           </a>
@@ -372,53 +653,87 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
     </div>
   </section>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• CONTACT / CTA â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <!-- ═══════════════ CONTACT / CTA ═══════════════ -->
   <section id="contact" style="position: relative; z-index: 1">
     <div style="max-width: 1260px; margin: 0 auto; padding: clamp(20px, 3vw, 40px) clamp(16px, 4vw, 40px) clamp(64px, 9vw, 120px)">
-      <div data-nx-cta2 style="position: relative; border-radius: 16px; background: oklch(0.196 0.021 279); padding: clamp(32px, 4vw, 56px) clamp(28px, 4vw, 56px) 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: start">
+      <div style="position: relative; overflow: hidden; border-radius: 18px; background: oklch(0.196 0.021 279)">
 
-        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 22px">
-          <h2 style="margin: 0; max-width: 14ch; font-size: clamp(30px, 4vw, 52px); line-height: 1.06; letter-spacing: -0.04em; font-weight: 800; text-wrap: balance; color: oklch(0.99 0.003 280)">Apply to work with us</h2>
-          <p style="margin: 0; max-width: 40ch; font-size: 16.5px; line-height: 1.62; color: oklch(0.75 0.015 280); text-wrap: pretty">We take a limited number of new clients each quarter. Send the form and we will tell you straight whether you are a fit.</p>
+        <div aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden; pointer-events: none">
+          <div style="position: absolute; right: -18%; top: -46%; width: 62%; aspect-ratio: 1; border-radius: 50%; border: 1px solid oklch(0.665 0.184 36 / 0.45)"></div>
+          <div style="position: absolute; right: -6%; top: -22%; width: 34%; aspect-ratio: 1; border-radius: 50%; border: 1px dashed oklch(0.42 0.02 280)"></div>
+          <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background-image: repeating-linear-gradient(to right, oklch(0.4 0.02 280) 0 5px, transparent 5px 12px)"></div>
         </div>
 
-        <div style="margin-bottom: clamp(32px, 4vw, 56px); padding: clamp(28px, 3.4vw, 40px); border-radius: 14px; background: oklch(0.99 0.003 280); display: flex; flex-direction: column; gap: 22px">
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px">
-            <label style="display: block">
-              <span style="display: block; font-size: 14px; font-weight: 700; color: oklch(0.196 0.021 279)">Your name <span style="color: oklch(0.665 0.184 36)">*</span></span>
-              <input type="text" placeholder="Jane Doe" style="width: 100%; margin-top: 8px; padding: 10px 0; border: 0; border-bottom: 1px solid oklch(0.88 0.008 280); background: transparent; font-family: inherit; font-size: 15.5px; color: oklch(0.196 0.021 279); outline: none; transition: border-color 0.3s" onfocus="this.style.borderColor='oklch(0.665 0.184 36)'" onblur="this.style.borderColor='oklch(0.88 0.008 280)'">
-            </label>
-            <label style="display: block">
-              <span style="display: block; font-size: 14px; font-weight: 700; color: oklch(0.196 0.021 279)">Work email <span style="color: oklch(0.665 0.184 36)">*</span></span>
-              <input type="email" placeholder="jane@company.com" style="width: 100%; margin-top: 8px; padding: 10px 0; border: 0; border-bottom: 1px solid oklch(0.88 0.008 280); background: transparent; font-family: inherit; font-size: 15.5px; color: oklch(0.196 0.021 279); outline: none; transition: border-color 0.3s" onfocus="this.style.borderColor='oklch(0.665 0.184 36)'" onblur="this.style.borderColor='oklch(0.88 0.008 280)'">
-            </label>
+        <div data-nx-cta2="" style="position: relative; display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr); gap: clamp(32px, 4.4vw, 72px); padding: clamp(36px, 4.6vw, 68px) clamp(28px, 4vw, 60px)">
+
+          <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 22px">
+            <span style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px 8px 13px; border: 1px solid oklch(0.34 0.02 280); border-radius: 999px; font-size: 13.5px; font-weight: 600; color: oklch(0.88 0.01 280)">
+              <span style="width: 7px; height: 7px; border-radius: 50%; background: oklch(0.665 0.184 36); display: block"></span>
+              Two slots left this quarter
+            </span>
+
+            <h2 style="margin: 0; max-width: 15ch; font-size: clamp(32px, 4.2vw, 56px); line-height: 1.04; letter-spacing: -0.04em; font-weight: 800; text-wrap: balance; color: oklch(0.99 0.003 280)">Find the leak <span style="color: oklch(0.72 0.17 40)">first</span></h2>
+
+            <p style="margin: 0; max-width: 34ch; font-size: 16.5px; line-height: 1.62; color: oklch(0.75 0.015 280); text-wrap: pretty">Send the form and you get a one-page audit of what is costing you pipeline. Free, and yours whether we work together or not.</p>
+
+            <div style="margin-top: auto; padding-top: clamp(28px, 3vw, 40px); display: flex; flex-direction: column; gap: 2px; width: 100%">
+              <div style="display: flex; align-items: center; gap: 16px; padding: 15px 0">
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: oklch(0.72 0.17 40); width: 22px; flex-shrink: 0">01</span>
+                <span style="font-size: 16px; font-weight: 700; letter-spacing: -0.02em; color: oklch(0.99 0.003 280); flex: 1">Audit</span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.62 0.02 280)">Free, one page</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 16px; padding: 15px 0; border-top: 1px solid oklch(0.28 0.02 280)">
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: oklch(0.72 0.17 40); width: 22px; flex-shrink: 0">02</span>
+                <span style="font-size: 16px; font-weight: 700; letter-spacing: -0.02em; color: oklch(0.99 0.003 280); flex: 1">Plan</span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.62 0.02 280)">Ranked by return</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 16px; padding: 15px 0; border-top: 1px solid oklch(0.28 0.02 280)">
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: oklch(0.72 0.17 40); width: 22px; flex-shrink: 0">03</span>
+                <span style="font-size: 16px; font-weight: 700; letter-spacing: -0.02em; color: oklch(0.99 0.003 280); flex: 1">Build</span>
+                <span style="font-family: 'IBM Plex Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.62 0.02 280)">Live in stages</span>
+              </div>
+            </div>
           </div>
-          <label style="display: block">
-            <span style="display: block; font-size: 14px; font-weight: 700; color: oklch(0.196 0.021 279)">Company website <span style="font-weight: 500; color: oklch(0.58 0.015 280)">(optional)</span></span>
-            <input type="text" placeholder="company.com" style="width: 100%; margin-top: 8px; padding: 10px 0; border: 0; border-bottom: 1px solid oklch(0.88 0.008 280); background: transparent; font-family: inherit; font-size: 15.5px; color: oklch(0.196 0.021 279); outline: none; transition: border-color 0.3s" onfocus="this.style.borderColor='oklch(0.665 0.184 36)'" onblur="this.style.borderColor='oklch(0.88 0.008 280)'">
-          </label>
-          <label style="display: block">
-            <span style="display: block; font-size: 14px; font-weight: 700; color: oklch(0.196 0.021 279)">What do you need <span style="font-weight: 500; color: oklch(0.58 0.015 280)">(optional)</span></span>
-            <select style="width: 100%; margin-top: 8px; padding: 10px 0; border: 0; border-bottom: 1px solid oklch(0.88 0.008 280); background: transparent; font-family: inherit; font-size: 15.5px; color: oklch(0.196 0.021 279); outline: none; appearance: none; cursor: pointer">
-              <option>Free consultation</option>
-              <option>Website</option>
-              <option>SEO</option>
-              <option>Content</option>
-              <option>Paid search</option>
-              <option>Full funnel</option>
-            </select>
-          </label>
-          <label style="display: block">
-            <span style="display: block; font-size: 14px; font-weight: 700; color: oklch(0.196 0.021 279)">Message <span style="font-weight: 500; color: oklch(0.58 0.015 280)">(optional)</span></span>
-            <textarea rows="3" placeholder="What is not working right now" style="width: 100%; margin-top: 8px; padding: 10px 0; border: 0; border-bottom: 1px solid oklch(0.88 0.008 280); background: transparent; font-family: inherit; font-size: 15.5px; color: oklch(0.196 0.021 279); outline: none; resize: vertical; transition: border-color 0.3s" onfocus="this.style.borderColor='oklch(0.665 0.184 36)'" onblur="this.style.borderColor='oklch(0.88 0.008 280)'"></textarea>
-          </label>
-          <button type="button" id="submit-btn" style="margin-top: 4px; width: 100%; height: 56px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 0; border-radius: 8px; background: oklch(0.665 0.184 36); color: oklch(0.99 0.003 280); font-family: inherit; font-size: 16.5px; font-weight: 600; letter-spacing: -0.01em; cursor: pointer; transition: background 0.3s">
-            Send it
-            <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
-          </button>
-          <span style="text-align: center; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.58 0.015 280)">Reply within one business day</span>
-        </div>
 
+          <div style="display: flex; flex-direction: column; gap: clamp(22px, 2.6vw, 30px)">
+            <div data-nx-frow="" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: clamp(22px, 2.6vw, 30px)">
+              <label style="display: block">
+                <span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.66 0.02 280)">Your name</span>
+                <input type="text" placeholder="Jane Doe" style="width: 100%; margin-top: 10px; padding: 12px 0; border: 0; border-bottom: 1px solid oklch(0.36 0.02 280); background: transparent; font-family: inherit; font-size: 16px; color: oklch(0.99 0.003 280); outline: none" />
+              </label>
+              <label style="display: block">
+                <span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.66 0.02 280)">Work email</span>
+                <input type="email" placeholder="jane@company.com" style="width: 100%; margin-top: 10px; padding: 12px 0; border: 0; border-bottom: 1px solid oklch(0.36 0.02 280); background: transparent; font-family: inherit; font-size: 16px; color: oklch(0.99 0.003 280); outline: none" />
+              </label>
+            </div>
+            <label style="display: block">
+              <span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.66 0.02 280)">Company website</span>
+              <input type="text" placeholder="company.com" style="width: 100%; margin-top: 10px; padding: 12px 0; border: 0; border-bottom: 1px solid oklch(0.36 0.02 280); background: transparent; font-family: inherit; font-size: 16px; color: oklch(0.99 0.003 280); outline: none" />
+            </label>
+            <div style="display: flex; flex-direction: column">
+              <span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.66 0.02 280)">What do you need</span>
+              <div data-nx-needs="" style="margin-top: 14px; display: flex; flex-wrap: wrap; gap: 9px">
+                <button type="button" class="nx-chip nx-chip-active" style="height: 42px; padding: 0 18px; border-radius: 999px; border: 1px solid oklch(0.665 0.184 36); background: oklch(0.665 0.184 36); color: oklch(0.99 0.003 280); font-family: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s">Everything</button>
+                <button type="button" class="nx-chip" style="height: 42px; padding: 0 18px; border-radius: 999px; border: 1px solid oklch(0.36 0.02 280); background: transparent; color: oklch(0.86 0.01 280); font-family: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s">Website</button>
+                <button type="button" class="nx-chip" style="height: 42px; padding: 0 18px; border-radius: 999px; border: 1px solid oklch(0.36 0.02 280); background: transparent; color: oklch(0.86 0.01 280); font-family: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s">Design</button>
+                <button type="button" class="nx-chip" style="height: 42px; padding: 0 18px; border-radius: 999px; border: 1px solid oklch(0.36 0.02 280); background: transparent; color: oklch(0.86 0.01 280); font-family: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s">Marketing</button>
+                <button type="button" class="nx-chip" style="height: 42px; padding: 0 18px; border-radius: 999px; border: 1px solid oklch(0.36 0.02 280); background: transparent; color: oklch(0.86 0.01 280); font-family: inherit; font-size: 14.5px; font-weight: 600; cursor: pointer; transition: background 0.2s, border-color 0.2s, color 0.2s">SEO</button>
+              </div>
+            </div>
+            <label style="display: block">
+              <span style="display: block; font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: oklch(0.66 0.02 280)">What is not working</span>
+              <textarea rows="2" placeholder="One or two lines is plenty" style="width: 100%; margin-top: 10px; padding: 12px 0; border: 0; border-bottom: 1px solid oklch(0.36 0.02 280); background: transparent; font-family: inherit; font-size: 16px; color: oklch(0.99 0.003 280); outline: none; resize: vertical"></textarea>
+            </label>
+            <div style="margin-top: 4px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px">
+              <button type="button" class="btn-hover-cta-submit" style="height: 58px; padding: 0 32px; display: inline-flex; align-items: center; gap: 10px; border: 0; border-radius: 9px; background: oklch(0.665 0.184 36); color: oklch(0.99 0.003 280); font-family: inherit; font-size: 16.5px; font-weight: 600; letter-spacing: -0.01em; cursor: pointer; transition: background 0.2s, color 0.2s">
+                Send it
+                <span style="font-family: 'IBM Plex Mono', monospace; font-weight: 400">→</span>
+              </button>
+              <span style="font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(0.62 0.02 280); line-height: 1.6">Reply within one business day<br />No pitch decks, no pressure</span>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
@@ -494,8 +809,8 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• HOVER STATES â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 // Service cards hover
 document.querySelectorAll('.svc-card').forEach(el => {
-  el.addEventListener('mouseenter', () => { el.style.borderColor = 'oklch(0.665 0.184 36)'; });
-  el.addEventListener('mouseleave', () => { el.style.borderColor = 'oklch(0.91 0.006 280)'; });
+  el.addEventListener('mouseenter', () => { el.style.opacity = '0.92'; });
+  el.addEventListener('mouseleave', () => { el.style.opacity = '1'; });
 });
 
 // btn-hover-dark
