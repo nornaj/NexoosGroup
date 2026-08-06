@@ -74,12 +74,11 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
 
 /* Default transition state for smooth hover-out (Slower & Ultra-Smooth) */
 [data-nx-smock] {
-  transition: transform 0.65s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.65s cubic-bezier(0.25, 1, 0.35, 1);
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.35, 1);
 }
 
 [data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] {
   transform: translateY(-6px);
-  box-shadow: 0 24px 48px -12px oklch(0.196 0.021 279 / 0.16) !important;
 }
 
 [data-nx-smock] div[style*="padding: 26px"] > span:nth-child(2),
@@ -100,7 +99,6 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
 [data-nx-smock] div[style*="padding: 26px"] > span:nth-child(6) {
   position: relative;
   overflow: hidden;
-  transition: box-shadow 0.6s cubic-bezier(0.25, 1, 0.35, 1);
 }
 
 [data-nx-smock] div[style*="padding: 26px"] > span:nth-child(6)::after {
@@ -122,10 +120,6 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
   }
 }
 
-[data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="padding: 26px"] > span:nth-child(6) {
-  box-shadow: 0 8px 24px -2px oklch(0.665 0.184 36 / 0.55);
-}
-
 [data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="padding: 26px"] > span:nth-child(6)::after {
   opacity: 1;
   animation: btnShimmerSweep 1.8s ease-in-out infinite;
@@ -133,22 +127,19 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
 
 /* --- Browser Control Dots Colored on Hover (Smoother & Slower) --- */
 [data-nx-smock] div[style*="height: 34px"] span[style*="border-radius: 50%"] {
-  transition: background-color 0.6s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.6s cubic-bezier(0.25, 1, 0.35, 1);
+  transition: background-color 0.6s cubic-bezier(0.25, 1, 0.35, 1);
 }
 
 [data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="height: 34px"] span[style*="border-radius: 50%"]:nth-child(1) {
   background-color: #ff5f56 !important;
-  box-shadow: 0 0 8px rgba(255, 95, 86, 0.45);
 }
 
 [data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="height: 34px"] span[style*="border-radius: 50%"]:nth-child(2) {
   background-color: #ffbd2e !important;
-  box-shadow: 0 0 8px rgba(255, 189, 46, 0.45);
 }
 
 [data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="height: 34px"] span[style*="border-radius: 50%"]:nth-child(3) {
   background-color: #27c93f !important;
-  box-shadow: 0 0 8px rgba(39, 201, 63, 0.45);
 }
 
 /* ═══════════════ ROW 02 DESIGN MOCKUP HOVER & HOVER-OUT ANIMATIONS ═══════════════ */
@@ -156,12 +147,12 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
 /* Default transition states for smooth hover-out */
 /* Light card (Left) */
 [data-nx-smock] div[style*="aspect-ratio: 3 / 4"]:first-child {
-  transition: transform 0.65s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.65s ease;
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.35, 1);
 }
 
 /* Dark card (Right) */
 [data-nx-smock] div[style*="aspect-ratio: 3 / 4"]:last-child {
-  transition: transform 0.65s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.65s ease;
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.35, 1);
 }
 
 /* Dark card inner orange bar */
@@ -171,7 +162,7 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
 
 /* Color palette circles (4 dots) */
 [data-nx-smock] div[style*="gap: 10px"] > span[style*="border-radius: 50%"] {
-  transition: transform 0.5s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.5s ease;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.35, 1);
 }
 
 /* Typography Aa badges */
@@ -184,7 +175,6 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
 /* Dark card lifts up & tilts */
 [data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="aspect-ratio: 3 / 4"]:last-child {
   transform: translateY(-10px) rotate(-2deg);
-  box-shadow: 0 32px 65px -25px oklch(0.196 0.021 279 / 0.65) !important;
 }
 
 /* Light card shifts left */
@@ -204,7 +194,6 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
 }
 [data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 10px"] > span[style*="border-radius: 50%"]:nth-child(2) {
   transform: scale(1.25);
-  box-shadow: 0 0 14px oklch(0.665 0.184 36 / 0.6);
   transition-delay: 0.06s;
 }
 [data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 10px"] > span[style*="border-radius: 50%"]:nth-child(3) {
@@ -226,7 +215,7 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
 
 /* Default transition states for smooth hover-out */
 [data-nx-smock] div[style*="gap: 8px"] span[style*="border-radius: 999px"] > span {
-  transition: width 0.7s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.5s ease;
+  transition: width 0.7s cubic-bezier(0.25, 1, 0.35, 1);
   position: relative;
   overflow: hidden;
 }
@@ -251,28 +240,24 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
 /* Expand Search bar (80% -> 96%) */
 [data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 8px"]:nth-of-type(1) span[style*="border-radius: 999px"] > span {
   width: 96% !important;
-  box-shadow: 0 0 12px oklch(0.665 0.184 36 / 0.5);
   transition-delay: 0s;
 }
 
 /* Expand LinkedIn bar (58% -> 82%) */
 [data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 8px"]:nth-of-type(2) span[style*="border-radius: 999px"] > span {
   width: 82% !important;
-  box-shadow: 0 0 12px oklch(0.665 0.184 36 / 0.5);
   transition-delay: 0.08s;
 }
 
 /* Expand Email bar (42% -> 68%) */
 [data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 8px"]:nth-of-type(3) span[style*="border-radius: 999px"] > span {
   width: 68% !important;
-  box-shadow: 0 0 12px oklch(0.665 0.184 36 / 0.5);
   transition-delay: 0.16s;
 }
 
 /* Expand Referral bar (26% -> 54%) */
 [data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="gap: 8px"]:nth-of-type(4) span[style*="border-radius: 999px"] > span {
   width: 54% !important;
-  box-shadow: 0 0 12px oklch(0.665 0.184 36 / 0.5);
   transition-delay: 0.24s;
 }
 
@@ -309,12 +294,12 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
 /* Default transition states for smooth hover-out */
 /* #1 Position row */
 [data-nx-smock] div[style*="padding: 22px"] > div:nth-child(2) {
-  transition: transform 0.65s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.65s ease;
+  transition: transform 0.65s cubic-bezier(0.25, 1, 0.35, 1);
 }
 
 /* #1 Badge icon */
 [data-nx-smock] div[style*="padding: 22px"] > div:nth-child(2) > span:first-child {
-  transition: transform 0.55s cubic-bezier(0.25, 1, 0.35, 1), box-shadow 0.55s ease;
+  transition: transform 0.55s cubic-bezier(0.25, 1, 0.35, 1);
 }
 
 /* Competitor rows (#2 & #3) */
@@ -332,13 +317,11 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
 /* #1 Rank row lifts up and glows */
 [data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="padding: 22px"] > div:nth-child(2) {
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 12px 30px -8px oklch(0.665 0.184 36 / 0.45) !important;
 }
 
 /* #1 Badge pops */
 [data-nx-srow]:has(.learn-more-link:hover) [data-nx-smock] div[style*="padding: 22px"] > div:nth-child(2) > span:first-child {
   transform: scale(1.15);
-  box-shadow: 0 0 12px oklch(0.665 0.184 36 / 0.6);
 }
 
 /* Competitor rows dim to highlight your #1 rank */
@@ -431,7 +414,7 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
           </a>
         </div>
         <div data-nx-smock style="display: flex; justify-content: center">
-          <div style="width: 100%; max-width: 460px; border-radius: 12px; overflow: hidden; border: 1px solid oklch(0.9 0.006 280); background: oklch(1 0 0); box-shadow: 0 30px 60px -34px oklch(0.196 0.021 279 / 0.45)">
+          <div style="width: 100%; max-width: 460px; border-radius: 12px; overflow: hidden; background: oklch(1 0 0)">
             <div style="height: 34px; padding: 0 14px; display: flex; align-items: center; gap: 6px; background: oklch(0.97 0.004 280); border-bottom: 1px solid oklch(0.93 0.005 280)">
               <span style="width: 8px; height: 8px; border-radius: 50%; background: oklch(0.86 0.008 280); display: block"></span>
               <span style="width: 8px; height: 8px; border-radius: 50%; background: oklch(0.86 0.008 280); display: block"></span>
@@ -481,12 +464,12 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
         <div data-nx-smock style="order: 1; display: flex; justify-content: center">
           <div style="position: relative; width: 100%; max-width: 460px; display: flex; flex-direction: column; gap: 16px">
             <div style="display: flex; gap: 14px; align-items: flex-start">
-              <div style="flex: 1; aspect-ratio: 3 / 4; border-radius: 12px; border: 1px solid oklch(0.9 0.006 280); background: oklch(1 0 0); box-shadow: 0 24px 50px -30px oklch(0.196 0.021 279 / 0.4); padding: 16px; display: flex; flex-direction: column; gap: 9px">
+              <div style="flex: 1; aspect-ratio: 3 / 4; border-radius: 12px; background: oklch(1 0 0); padding: 16px; display: flex; flex-direction: column; gap: 9px">
                 <span style="width: 60%; height: 8px; border-radius: 3px; background: oklch(0.9 0.006 280); display: block"></span>
                 <span style="width: 100%; flex: 1; border-radius: 8px; background: oklch(0.96 0.004 280); display: block"></span>
                 <span style="width: 44%; height: 8px; border-radius: 3px; background: oklch(0.9 0.006 280); display: block"></span>
               </div>
-              <div style="flex: 1; margin-top: 24px; aspect-ratio: 3 / 4; border-radius: 12px; border: 1px solid oklch(0.9 0.006 280); background: oklch(0.196 0.021 279); box-shadow: 0 24px 50px -30px oklch(0.196 0.021 279 / 0.5); padding: 16px; display: flex; flex-direction: column; gap: 9px">
+              <div style="flex: 1; margin-top: 24px; aspect-ratio: 3 / 4; border-radius: 12px; background: oklch(0.196 0.021 279); padding: 16px; display: flex; flex-direction: column; gap: 9px">
                 <span style="width: 50%; height: 8px; border-radius: 3px; background: oklch(0.72 0.17 40); display: block"></span>
                 <span style="width: 100%; flex: 1; border-radius: 8px; background: oklch(0.28 0.02 280); display: block"></span>
                 <span style="width: 66%; height: 8px; border-radius: 3px; background: oklch(0.34 0.02 280); display: block"></span>
@@ -582,7 +565,7 @@ article[style*="oklch(0.196"]:hover .svc-bg-icon {
           </a>
         </div>
         <div data-nx-smock style="order: 1; display: flex; justify-content: center">
-          <div style="width: 100%; max-width: 460px; padding: 22px; border-radius: 12px; border: 1px solid oklch(0.9 0.006 280); background: oklch(1 0 0); box-shadow: 0 30px 60px -34px oklch(0.196 0.021 279 / 0.4); display: flex; flex-direction: column; gap: 12px">
+          <div style="width: 100%; max-width: 460px; padding: 22px; border-radius: 12px; background: oklch(1 0 0); display: flex; flex-direction: column; gap: 12px">
             <div style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 999px; border: 1px solid oklch(0.92 0.005 280); background: oklch(0.97 0.004 280)">
               <span style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid oklch(0.72 0.012 280); display: block"></span>
               <span style="flex: 1; height: 8px; border-radius: 3px; background: oklch(0.88 0.008 280); display: block"></span>
